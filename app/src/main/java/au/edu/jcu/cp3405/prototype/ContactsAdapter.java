@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
@@ -17,8 +18,13 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class ContactsAdapter extends ArrayAdapter<Contact> {
+    Context context;
+    StateListener listener;
+
     public ContactsAdapter(Context context, ArrayList<Contact> users) {
         super(context, 0, users);
+        this.context = context;
+        listener = (StateListener) context;
     }
 
     @NonNull
@@ -40,8 +46,19 @@ public class ContactsAdapter extends ArrayAdapter<Contact> {
             @Override
             public void onClick(View v) {
                 if (deleteContact(getContext(), contact.mobileNum, contact.name)) {
+                    Toast toast = Toast.makeText(context, "Contact deleted.", Toast.LENGTH_LONG);
+                    ViewGroup group = (ViewGroup) toast.getView();
+                    TextView messageTextView = (TextView) group.getChildAt(0);
+                    messageTextView.setTextSize(30);
+                    toast.show();
                     System.out.println("CONTACT DELETED====================================================");
+                    listener.onUpdate(State.UPDATE_CONTACTS);
                 } else {
+                    Toast toast = Toast.makeText(context, "Contact not found.", Toast.LENGTH_LONG);
+                    ViewGroup group = (ViewGroup) toast.getView();
+                    TextView messageTextView = (TextView) group.getChildAt(0);
+                    messageTextView.setTextSize(30);
+                    toast.show();
                     System.out.println("CONTACT NOT FOUND====================================================");
                 }
             }
@@ -65,7 +82,6 @@ public class ContactsAdapter extends ArrayAdapter<Contact> {
 
                 } while (cur.moveToNext());
             }
-
         } catch (Exception e) {
             System.out.println(Arrays.toString(e.getStackTrace()));
         }

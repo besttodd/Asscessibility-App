@@ -12,8 +12,8 @@ import android.widget.ListView;
 
 import java.util.ArrayList;
 
-public class ListContactsActivity extends AppCompatActivity {
-    ArrayList<Contact> arrayOfContacts = new ArrayList<>();
+public class ListContactsActivity extends AppCompatActivity implements StateListener {
+    ArrayList<Contact> arrayOfContacts;
     ListView listView;
 
     @Override
@@ -25,7 +25,17 @@ public class ListContactsActivity extends AppCompatActivity {
         getAllContacts();
     }
 
+    @Override
+    public void onUpdate(State state) {
+        switch (state) {
+            case UPDATE_CONTACTS:
+                getAllContacts();
+                break;
+        }
+    }
+
     private void getAllContacts() {
+        arrayOfContacts = new ArrayList<>();
         ContentResolver cr = getContentResolver();
         Cursor cur = cr.query(ContactsContract.Contacts.CONTENT_URI, null, null, null, null);
         if ((cur != null ? cur.getCount() : 0) > 0) {

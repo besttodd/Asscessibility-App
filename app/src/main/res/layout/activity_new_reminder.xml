@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorOldBG"
+    android:orientation="vertical"
+    tools:context=".NewReminderActivity">
+
+    <TextView
+        style="@style/ColorTheme"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Create a new reminder"
+        android:textSize="34sp" />
+
+        <TextView
+            android:id="@+id/textView"
+            style="@style/ColorTheme"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Remember to:"
+            android:textSize="32sp" />
+
+        <EditText
+            android:id="@+id/contactName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:textSize="28sp" />
+
+        <TextView
+            android:id="@+id/textView2"
+            style="@style/ColorTheme"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="AT"
+            android:textSize="32sp" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:orientation="horizontal">
+            <Spinner
+                android:id="@+id/hoursSpinner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:entries="@array/hours" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/ColorTheme"
+                android:text=":" />
+            <EditText
+                android:id="@+id/minutesEditText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/ColorTheme"
+                android:ems="2" />
+            <!--<Spinner
+                android:id="@+id/minutesSpinner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:entries="@array/minutes" />-->
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <RadioGroup
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <RadioButton
+                        android:id="@+id/amRadio"
+                        style="@style/ColorTheme"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="AM" />
+                    <RadioButton
+                        android:id="@+id/pmRadio"
+                        style="@style/ColorTheme"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="PM" />
+                </RadioGroup>
+            </LinearLayout>
+        </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="bottom"
+        android:paddingTop="22dp"
+        android:textColor="#FFFFFF"
+        android:textSize="32sp"
+        android:text="on these days:" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="center">
+        <CheckBox
+            android:id="@+id/sunCheckBox"
+            style="@style/ColorTheme"
+            android:padding="0dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="S" />
+        <CheckBox
+            android:id="@+id/monCheckBox"
+            style="@style/ColorTheme"
+            android:padding="0dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="M" />
+        <CheckBox
+            android:id="@+id/tueCheckBox"
+            style="@style/ColorTheme"
+            android:padding="0dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="T" />
+        <CheckBox
+            android:id="@+id/wedCheckBox"
+            style="@style/ColorTheme"
+            android:padding="0dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="W" />
+        <CheckBox
+            android:id="@+id/thursCheckBox"
+            style="@style/ColorTheme"
+            android:padding="0dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="T" />
+        <CheckBox
+            android:id="@+id/friCheckBox"
+            style="@style/ColorTheme"
+            android:padding="0dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="F" />
+        <CheckBox
+            android:id="@+id/satCheckBox"
+            style="@style/ColorTheme"
+            android:padding="0dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="S" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/button_red"
+            android:padding="16dp"
+            android:text="@string/cancel"
+            android:onClick="onBackPressed"
+            android:textColor="#FFFFFF"
+            android:textSize="36sp" />
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:background="@drawable/button_green"
+            android:onClick="saveAlarm"
+            android:padding="16dp"
+            android:text="@string/save"
+            android:textColor="#FFFFFF"
+            android:textSize="36sp" />
+    </LinearLayout>
+</androidx.appcompat.widget.LinearLayoutCompat>

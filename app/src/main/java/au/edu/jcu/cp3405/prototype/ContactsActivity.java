@@ -38,7 +38,7 @@ public class ContactsActivity extends AppCompatActivity {
                 finish();
                 startActivity(getIntent());
             } else {
-                Toast.makeText(this, "The app was not allowed to get your location. Hence, it cannot function properly. Please consider granting it this permission", Toast.LENGTH_LONG).show();
+                Toast.makeText(this, "The app was not allowed access to your contacts. Hence, it cannot function properly. Please consider granting it this permission", Toast.LENGTH_LONG).show();
             }
         }
 

@@ -9,6 +9,7 @@
     tools:context=".ClockActivity">
 
     <TextView
+        android:id="@+id/currentTimeDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         style="@style/ColorTheme"

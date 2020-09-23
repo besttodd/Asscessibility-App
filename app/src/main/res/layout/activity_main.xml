@@ -43,7 +43,8 @@
                 android:padding="16dp"
                 android:text="@string/calendar"
                 android:textColor="#FFFFFF"
-                android:textSize="32sp" />
+                android:textSize="32sp"
+                android:onClick="calendarClicked" />
         </LinearLayout>
 
         <LinearLayout

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/colorOldBG">
+
+    <TextView
+        android:id="@+id/textViewEventTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="32dp"
+        android:textColor="#FFFFFF"
+        android:text="Event 1" />
+
+    <TextView
+        android:id="@+id/textViewTime"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="22dp"
+        android:textSize="30sp"
+        android:textColor="#FFFFFF"
+        android:text="10:00am" />
+
+</LinearLayout>

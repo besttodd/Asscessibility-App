@@ -14,6 +14,11 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
 
+    public void calendarClicked(View view) {
+        Intent intent = new Intent(this, CalendarActivity.class);
+        startActivity(intent);
+    }
+
     public void contactsClicked(View view) {
         Intent intent = new Intent(this, ContactsActivity.class);
         startActivity(intent);

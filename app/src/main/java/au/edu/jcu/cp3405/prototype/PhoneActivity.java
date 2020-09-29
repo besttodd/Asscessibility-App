@@ -8,14 +8,18 @@ import android.widget.Button;
 import android.widget.TextView;
 
 public class PhoneActivity extends AppCompatActivity {
+    SoundManager soundManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_phone);
+
+        soundManager = (SoundManager) getApplicationContext();
     }
 
     public void buttonClicked(View view) {
+        soundManager.playSound(SoundManager.NEUTRAL);
         Button button = (Button) view;
         TextView textView = findViewById(R.id.numberDisplay);
         String entering;
@@ -34,6 +38,7 @@ public class PhoneActivity extends AppCompatActivity {
     }
 
     public void deleteButton(View view) {
+        soundManager.playSound(SoundManager.CANCEL);
         TextView textView = findViewById(R.id.numberDisplay);
         String currentDisplay = textView.getText().toString();
         String newDisplay = "";

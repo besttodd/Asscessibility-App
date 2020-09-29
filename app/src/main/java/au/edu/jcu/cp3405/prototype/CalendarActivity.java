@@ -38,6 +38,7 @@ public class CalendarActivity extends AppCompatActivity {
     private static final String GOOGLE_USERNAME = "sebastianwilde22@gmail.com";
     private CalendarView mCalendarView;
     Context context;
+    SoundManager soundManager;
 
     String date;
 
@@ -46,6 +47,7 @@ public class CalendarActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calendar);
         context = this;
+        soundManager = (SoundManager) getApplicationContext();
 
         boolean hasPermissionContacts = (ContextCompat.checkSelfPermission(getApplicationContext(),
                 Manifest.permission.READ_CALENDAR) == PackageManager.PERMISSION_GRANTED);
@@ -58,6 +60,7 @@ public class CalendarActivity extends AppCompatActivity {
         mCalendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(CalendarView CalendarView, int year, int month, int dayOfMonth) {
+                soundManager.playSound(SoundManager.NEUTRAL);
                 date = year + "/" + month + "/" + dayOfMonth;
                 Log.d(TAG, "onSelectedDayChange: yyyy/mm/dd:" + date);
                 /*Intent intent = new Intent(CalendarActivity.this, CalendarCompleteActivity.class);
@@ -70,6 +73,11 @@ public class CalendarActivity extends AppCompatActivity {
                 }
             }
         });
+        try {
+            readEvents(context);
+        } catch (java.text.ParseException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -88,6 +96,7 @@ public class CalendarActivity extends AppCompatActivity {
     }
 
     public void addNewEventClicked(View view) {
+        soundManager.playSound(SoundManager.NEUTRAL);
         Intent intent = new Intent(this, NewCalendarActivity.class);
         startActivity(intent);
     }

@@ -13,6 +13,7 @@ import android.widget.ListView;
 import java.util.ArrayList;
 
 public class ListContactsActivity extends AppCompatActivity implements StateListener {
+    SoundManager soundManager;
     ArrayList<Contact> arrayOfContacts;
     ListView listView;
 
@@ -20,6 +21,8 @@ public class ListContactsActivity extends AppCompatActivity implements StateList
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_contacts);
+
+        soundManager = (SoundManager) getApplicationContext();
 
         listView = findViewById(R.id.contactListView);
         getAllContacts();
@@ -70,6 +73,7 @@ public class ListContactsActivity extends AppCompatActivity implements StateList
     }
 
     public void onBackPressed(View view) {
+        soundManager.playSound(SoundManager.CANCEL);
         onBackPressed();
     }
 }

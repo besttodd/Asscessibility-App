@@ -37,7 +37,7 @@
     <string name="plus">+</string>
     <string name="_0">0</string>
     <string name="hash">#</string>
-    <string name="alarms">Alarms</string>
+    <string name="reminders">Alarms</string>
     <string-array name="hours">
         <item>00</item>
         <item>01</item>

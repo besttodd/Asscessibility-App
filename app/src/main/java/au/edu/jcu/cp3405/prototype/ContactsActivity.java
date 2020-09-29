@@ -14,11 +14,14 @@ import android.widget.Toast;
 
 public class ContactsActivity extends AppCompatActivity {
     private static final int REQUEST_ACCESS_CONTACTS = 111;
+    SoundManager soundManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_contacts);
+
+        soundManager = (SoundManager) getApplicationContext();
 
         boolean hasPermissionContacts = (ContextCompat.checkSelfPermission(getApplicationContext(),
                 Manifest.permission.READ_CONTACTS) == PackageManager.PERMISSION_GRANTED);
@@ -45,16 +48,19 @@ public class ContactsActivity extends AppCompatActivity {
     }
 
     public void addNewClicked(View view) {
+        soundManager.playSound(SoundManager.NEUTRAL);
         Intent intent = new Intent(this, AddContactActivity.class);
         startActivity(intent);
     }
 
     public void viewContactsClicked(View view) {
+        soundManager.playSound(SoundManager.NEUTRAL);
         Intent intent = new Intent(this, ListContactsActivity.class);
         startActivity(intent);
     }
 
     public void onBackPressed(View view) {
+        soundManager.playSound(SoundManager.CANCEL);
         onBackPressed();
     }
 }

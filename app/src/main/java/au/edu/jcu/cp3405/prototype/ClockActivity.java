@@ -16,11 +16,15 @@ import java.util.Locale;
 
 public class ClockActivity extends AppCompatActivity {
 
+    SoundManager soundManager;
+
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_clock);
+
+        soundManager = (SoundManager) getApplicationContext();
 
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy\nHH:mm", Locale.getDefault());
         String currentDateandTime = sdf.format(new Date());
@@ -42,6 +46,7 @@ public class ClockActivity extends AppCompatActivity {
     }*/
 
     public void viewAlarmsClicked(View view) {
+        soundManager.playSound(SoundManager.NEUTRAL);
         Intent intent = new Intent(this, ViewRemindersActivity.class);
         startActivity(intent);
         /*Intent openClockIntent = new Intent(AlarmClock.ACTION_SHOW_ALARMS);
@@ -49,11 +54,13 @@ public class ClockActivity extends AppCompatActivity {
     }
 
     public void addNewClicked(View view) {
+        soundManager.playSound(SoundManager.NEUTRAL);
         Intent intent = new Intent(this, NewReminderActivity.class);
         startActivity(intent);
     }
 
     public void onBackPressed(View view) {
+        soundManager.playSound(SoundManager.CANCEL);
         onBackPressed();
     }
 }

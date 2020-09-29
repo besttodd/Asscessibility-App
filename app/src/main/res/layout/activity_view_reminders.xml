@@ -44,5 +44,11 @@
         android:text="@string/back"
         android:textColor="#FFFFFF"
         android:textSize="32sp" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Clear"
+            android:onClick="clearReminders" />
     </LinearLayout>
 </androidx.appcompat.widget.LinearLayoutCompat>

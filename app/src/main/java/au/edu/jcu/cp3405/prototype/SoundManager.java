@@ -6,6 +6,9 @@ import android.media.SoundPool;
 import android.util.Log;
 
 public class SoundManager extends Application {
+    public static final int CONFIRM = 1;
+    public static final int NEUTRAL = 1;
+    public static final int CANCEL = 2;
     private SoundPool soundPool;
     private int[] sounds;
     int sound;
@@ -39,8 +42,8 @@ public class SoundManager extends Application {
 
     private void loadSounds(Context context) {
         sounds[0] = soundPool.load(context, R.raw.alarm_tone, 0);
-        //sounds[1] = soundPool.load(context, R.raw.as_time_passes_zapsplat, 0);
-        //sounds[2] = soundPool.load(context, R.raw.correct, 0);
+        sounds[1] = soundPool.load(context, R.raw.confirm, 0);
+        sounds[2] = soundPool.load(context, R.raw.cancel, 0);
         //sounds[3] = soundPool.load(context, R.raw.incorrect, 0);
     }
 

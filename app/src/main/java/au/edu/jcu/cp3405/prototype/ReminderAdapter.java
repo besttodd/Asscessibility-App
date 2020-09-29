@@ -11,15 +11,15 @@ import java.util.List;
 
 public class ReminderAdapter extends BaseAdapter {
     private Context context;
-    private List<Alarm> alarms;
+    private List<Reminder> reminders;
 
-    ReminderAdapter(Context context, List<Alarm> alarms) {
+    ReminderAdapter(Context context, List<Reminder> reminders) {
         this.context = context;
-        this.alarms = alarms;
+        this.reminders = reminders;
     }
 
     public int getCount() {
-        return alarms.size();
+        return reminders.size();
     }
 
     public Object getItem(int position) {
@@ -49,15 +49,21 @@ public class ReminderAdapter extends BaseAdapter {
             holder = (Holder) child.getTag();
         }
 
-        holder.textviewlabel.setText(alarms.get(position).getLabel());
-        holder.textviewtime.setText(getTime(alarms.get(position)));
-        holder.textviewdays.setText(alarms.get(position).getDay());
+        holder.textviewlabel.setText(reminders.get(position).getLabel());
+        holder.textviewtime.setText(getTime(reminders.get(position)));
+        holder.textviewdays.setText(reminders.get(position).getDay());
 
         return child;
     }
 
-    private String getTime(Alarm alarm) {
-        return alarm.getHour() + ":" + alarm.getMin();
+    private String getTime(Reminder reminder) {
+        String mins = "";
+        if (reminder.getMin() < 10) {
+            mins = "0" + reminder.getMin();
+        }else {
+            mins = String.valueOf(reminder.getMin());
+        }
+        return reminder.getHour() + ":" + mins;
     }
 
     public static class Holder {

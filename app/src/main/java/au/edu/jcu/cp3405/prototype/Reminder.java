@@ -4,14 +4,14 @@ import android.util.Log;
 
 import java.util.Calendar;
 
-public class Alarm {
+public class Reminder {
     int id;
     int hour;
     int min;
     int day;
     String label;
 
-    public Alarm(int id, int hour, int min, int day, String label) {
+    public Reminder(int id, int hour, int min, int day, String label) {
         this.id = id;
         this.hour = hour;
         this.min = min;

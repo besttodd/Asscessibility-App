@@ -30,9 +30,10 @@ import java.util.List;
 
 public class NewReminderActivity extends AppCompatActivity {
     public static final String MyPREFERENCES = "MyAlarms" ;
+    SoundManager soundManager;
     SharedPreferences sharedpreferences;
     Calendar calSet;
-    List<Alarm> alarmList = new ArrayList<>();
+    List<Reminder> reminderList = new ArrayList<>();
 
     EditText textInput;
     Spinner hourSpinner;
@@ -51,6 +52,8 @@ public class NewReminderActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_reminder);
 
+        soundManager = (SoundManager) getApplicationContext();
+
         if (android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.N){
             Toast.makeText(this, "Your phone's software is out of date, this function may not run properly", Toast.LENGTH_LONG).show();
         }
@@ -66,7 +69,10 @@ public class NewReminderActivity extends AppCompatActivity {
         calSet = (Calendar) calNow.clone();
         checkDOTW();
 
-        alarmList = getList();
+        reminderList = getList();
+        if(reminderList == null || reminderList.isEmpty()){
+            reminderList = new ArrayList<>();
+        }
     }
 
     @RequiresApi(api = Build.VERSION_CODES.N)
@@ -109,6 +115,7 @@ public class NewReminderActivity extends AppCompatActivity {
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     public void saveAlarm(View view) {
+        soundManager.playSound(SoundManager.CONFIRM);
         String label = textInput.getText().toString();
         int hour = hourSpinner.getSelectedItemPosition();
         int min = Integer.parseInt(minText.getText().toString());
@@ -123,66 +130,71 @@ public class NewReminderActivity extends AppCompatActivity {
         RadioButton pmRadio = findViewById(R.id.pmRadio);
         if (pmRadio.isChecked()) { hour = hour + 12;}
 
-        Alarm alarm = new Alarm(alarmList.size(), hour, min, 0, label);
-        alarmList.add(alarm);
-        int numAlarms = alarmList.size();
+        Reminder reminder;
+        if(reminderList.isEmpty()) {
+            reminder = new Reminder(0, hour, min, 0, label);
+        }else {
+            reminder = new Reminder(reminderList.size(), hour, min, 0, label);
+        }
+        reminderList.add(reminder);
+        int numAlarms = reminderList.size();
 
         if (chkMon.isChecked())
         {
-            alarm.setDay(0);
-            setAlarm(alarmList.get(numAlarms-1));
+            reminder.setDay(0);
+            setAlarm(reminderList.get(numAlarms-1));
         }
 
         if (chkTue.isChecked())
         {
-            alarm.setDay(1);
-            setAlarm(alarmList.get(numAlarms-1));
+            reminder.setDay(1);
+            setAlarm(reminderList.get(numAlarms-1));
         }
 
         if (chkWed.isChecked())
         {
-            alarm.setDay(2);
-            setAlarm(alarmList.get(numAlarms-1));
+            reminder.setDay(2);
+            setAlarm(reminderList.get(numAlarms-1));
         }
 
         if (chkThur.isChecked())
         {
-            alarm.setDay(3);
-            setAlarm(alarmList.get(numAlarms-1));
+            reminder.setDay(3);
+            setAlarm(reminderList.get(numAlarms-1));
         }
 
         if (chkFri.isChecked())
         {
-            alarm.setDay(4);
-            setAlarm(alarmList.get(numAlarms-1));
+            reminder.setDay(4);
+            setAlarm(reminderList.get(numAlarms-1));
         }
 
         if (chkSat.isChecked())
         {
-            alarm.setDay(5);
-            setAlarm(alarmList.get(numAlarms-1));
+            reminder.setDay(5);
+            setAlarm(reminderList.get(numAlarms-1));
         }
 
         if (chkSun.isChecked())
         {
-            alarm.setDay(6);
-            setAlarm(alarmList.get(numAlarms-1));
+            reminder.setDay(6);
+            setAlarm(reminderList.get(numAlarms-1));
         }
 
-        saveList("ReminderList", alarmList);
+        saveList("ReminderList", reminderList);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.N)
-    private void setAlarm(Alarm alarm)
+    private void setAlarm(Reminder reminder)
     {
         Calendar calNow = Calendar.getInstance();
         Calendar calSet = (Calendar) calNow.clone();
 
-        calSet.set(Calendar.HOUR_OF_DAY, alarm.getHour());
-        calSet.set(Calendar.MINUTE, alarm.getMin());
+        calSet.set(Calendar.HOUR_OF_DAY, reminder.getHour());
+        calSet.set(Calendar.MINUTE, reminder.getMin());
         calSet.set(Calendar.SECOND, 0);
         calSet.set(Calendar.MILLISECOND, 0);
-        Log.d("NewReminder",alarm.getHour()+":"+alarm.getMin()+"==================================================================");
+        Log.d("NewReminder", reminder.getHour()+":"+ reminder.getMin()+"==================================================================");
 
         if(calSet.compareTo(Calendar.getInstance()) <= 0){
             //Today Set time passed, count to tomorrow
@@ -191,33 +203,22 @@ public class NewReminderActivity extends AppCompatActivity {
         }
 
         Intent myIntent = new Intent(getApplicationContext(), MyBroadcastReceiver.class);
-        //myIntent.setAction(MyBroadcastReceiver.ACTION_ALARM_RECEIVER);
-        PendingIntent myPendingIntent = PendingIntent.getBroadcast(this.getApplicationContext(), alarm.getId(), myIntent, PendingIntent.FLAG_UPDATE_CURRENT|  Intent.FILL_IN_DATA);
+        myIntent.setAction(MyBroadcastReceiver.ACTION_ALARM_RECEIVER);
+        PendingIntent myPendingIntent = PendingIntent.getBroadcast(this.getApplicationContext(), reminder.getId(), myIntent, PendingIntent.FLAG_UPDATE_CURRENT);
         AlarmManager myAlarmManager = (AlarmManager)getSystemService(ALARM_SERVICE);
         //myAlarmManager.setExact(AlarmManager.RTC_WAKEUP, calSet.getTimeInMillis(), myPendingIntent);
         myAlarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calSet.getTimeInMillis(), 24*60*60*1000, myPendingIntent);
         //check
-        set("AlarmLabel", alarm.getLabel());
+        set("AlarmLabel", reminder.getLabel());
         Toast.makeText(this, "Alarm set", Toast.LENGTH_LONG).show();
-        Log.d("NewReminder", "ALARM SET======================================================================");
+        Log.d("NewReminder", "ALARM: "+reminder.getId()+" -SET======================================================================");
         onBackPressed();
     }
 
-    public void saveList(String key, List<Alarm> list) {
+    public void saveList(String key, List<Reminder> list) {
         Gson gson = new Gson();
         String json = gson.toJson(list);
         set(key, json);
-    }
-
-    public List<Alarm> getList(){
-        List<Alarm> arrayItems = null;
-        String serializedObject = sharedpreferences.getString("ReminderList", null);
-        if (serializedObject != null) {
-            Gson gson = new Gson();
-            Type type = new TypeToken<List<Alarm>>(){}.getType();
-            arrayItems = gson.fromJson(serializedObject, type);
-        }
-        return arrayItems;
     }
 
     public void set(String key, String value) {
@@ -226,7 +227,19 @@ public class NewReminderActivity extends AppCompatActivity {
         editor.apply();
     }
 
+    public List<Reminder> getList(){
+        List<Reminder> arrayItems = null;
+        String serializedObject = sharedpreferences.getString("ReminderList", null);
+        if (serializedObject != null) {
+            Gson gson = new Gson();
+            Type type = new TypeToken<List<Reminder>>(){}.getType();
+            arrayItems = gson.fromJson(serializedObject, type);
+        }
+        return arrayItems;
+    }
+
     public void onBackPressed(View view) {
+        soundManager.playSound(SoundManager.CANCEL);
         onBackPressed();
     }
 }

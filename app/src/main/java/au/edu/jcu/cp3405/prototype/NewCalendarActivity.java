@@ -12,7 +12,7 @@ import android.widget.TextView;
 public class NewCalendarActivity extends AppCompatActivity {
 
     private static final String TAG = "MainActivity";
-
+    SoundManager soundManager;
     private TextView thedate;
     private Button btngocalendar;
 
@@ -20,6 +20,8 @@ public class NewCalendarActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_calendar);
+
+        soundManager = (SoundManager) getApplicationContext();
 
         thedate = (TextView) findViewById(R.id.date);
         //btngocalendar = (Button) findViewById(R.id.btngocalendar);
@@ -38,6 +40,7 @@ public class NewCalendarActivity extends AppCompatActivity {
     }
 
     public void saveEvent(View view) {
+        soundManager.playSound(SoundManager.CONFIRM);
         Calendar cal = Calendar.getInstance();
         Intent intent = new Intent(Intent.ACTION_EDIT);
         intent.setType("vnd.android.cursor.item/event");
@@ -50,6 +53,7 @@ public class NewCalendarActivity extends AppCompatActivity {
     }
 
     public void onBackPressed(View view) {
+        soundManager.playSound(SoundManager.CANCEL);
         onBackPressed();
     }
 }

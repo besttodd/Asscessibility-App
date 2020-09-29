@@ -17,24 +17,30 @@ import java.util.ArrayList;
 
 public class AddContactActivity extends AppCompatActivity {
     Context context;
+    SoundManager soundManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_addcontacts);
         context = this;
+
+        soundManager = (SoundManager) getApplicationContext();
     }
 
     public void saveContact(View view) {
+        //Check input
+
         EditText input = findViewById(R.id.contactName);
         String name = input.getText().toString();
-        //manipulate for first and last
+        //manipulate for first and last name
         input = findViewById(R.id.contactPhone);
         //int phoneNum = Integer.parseInt(input.getText().toString());
         String phoneNum = input.getText().toString();
         input = findViewById(R.id.contactEmail);
         String email = input.getText().toString();
         addContact(name, phoneNum, email);
+        soundManager.playSound(SoundManager.CONFIRM);
     }
 
     private void addContact(String name, String phoneNum, String email) {
@@ -82,6 +88,7 @@ public class AddContactActivity extends AppCompatActivity {
     }
 
     public void onBackPressed(View view) {
+        soundManager.playSound(SoundManager.CANCEL);
         onBackPressed();
     }
 }

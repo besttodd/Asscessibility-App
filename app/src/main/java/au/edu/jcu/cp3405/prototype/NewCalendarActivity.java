@@ -1,9 +1,11 @@
 package au.edu.jcu.cp3405.prototype;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.icu.util.Calendar;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -11,9 +13,7 @@ import android.widget.TextView;
 
 public class NewCalendarActivity extends AppCompatActivity {
 
-    private static final String TAG = "MainActivity";
     SoundManager soundManager;
-    private TextView thedate;
     private Button btngocalendar;
 
     @Override
@@ -23,8 +23,8 @@ public class NewCalendarActivity extends AppCompatActivity {
 
         soundManager = (SoundManager) getApplicationContext();
 
-        thedate = (TextView) findViewById(R.id.date);
-        //btngocalendar = (Button) findViewById(R.id.btngocalendar);
+        TextView thedate = findViewById(R.id.date);
+        //btngocalendar = findViewById(R.id.btngocalendar);
 
         Intent incoming = getIntent();
         String date = incoming.getStringExtra("date");
@@ -39,6 +39,7 @@ public class NewCalendarActivity extends AppCompatActivity {
         });*/
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     public void saveEvent(View view) {
         soundManager.playSound(SoundManager.CONFIRM);
         Calendar cal = Calendar.getInstance();

@@ -1,9 +1,5 @@
 package au.edu.jcu.cp3405.prototype;
 
-import android.util.Log;
-
-import java.util.Calendar;
-
 public class Reminder {
     int id;
     int hour;
@@ -23,20 +19,20 @@ public class Reminder {
         this.id = id;
     }
 
+    /*public void setLabel(String label) {
+        this.label = label;
+    }
+
     public void setHour(int hour) {
         this.hour = hour;
     }
 
     public void setMin(int min) {
         this.min = min;
-    }
+    }*/
 
     public void setDay(int day) {
         this.day = day;
-    }
-
-    public void setLabel(String label) {
-        this.label = label;
     }
 
     public int getId() {

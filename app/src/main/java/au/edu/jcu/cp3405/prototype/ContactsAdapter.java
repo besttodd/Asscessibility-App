@@ -39,6 +39,7 @@ public class ContactsAdapter extends ArrayAdapter<Contact> {
         TextView contactName = convertView.findViewById(R.id.nameItem);
         TextView contactNumber = convertView.findViewById(R.id.numberItem);
         Button deleteButton = convertView.findViewById(R.id.deleteButton);
+        assert contact != null;
         contactName.setText(contact.name);
         contactNumber.setText(contact.mobileNum);
 
@@ -71,7 +72,7 @@ public class ContactsAdapter extends ArrayAdapter<Contact> {
         Uri contactUri = Uri.withAppendedPath(ContactsContract.PhoneLookup.CONTENT_FILTER_URI, Uri.encode(phone));
         Cursor cur = ctx.getContentResolver().query(contactUri, null, null, null, null);
         try {
-            if (cur.moveToFirst()) {
+            if (cur != null && cur.moveToFirst()) {
                 do {
                     if (cur.getString(cur.getColumnIndex(ContactsContract.PhoneLookup.DISPLAY_NAME)).equalsIgnoreCase(name)) {
                         String lookupKey = cur.getString(cur.getColumnIndex(ContactsContract.Contacts.LOOKUP_KEY));
@@ -81,6 +82,7 @@ public class ContactsAdapter extends ArrayAdapter<Contact> {
                     }
 
                 } while (cur.moveToNext());
+                cur.close();
             }
         } catch (Exception e) {
             System.out.println(Arrays.toString(e.getStackTrace()));

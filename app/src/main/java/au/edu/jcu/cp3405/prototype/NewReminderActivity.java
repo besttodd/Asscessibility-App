@@ -123,7 +123,7 @@ public class NewReminderActivity extends AppCompatActivity {
         KeyListener keyListener = DigitsKeyListener.getInstance("1234567890");
         minText.setKeyListener(keyListener);
         if(min > 59) {
-            minText.setText("00");
+            minText.setText(0);
             Toast.makeText(this, "Invalid minutes", Toast.LENGTH_LONG).show();
         }
 
@@ -207,6 +207,7 @@ public class NewReminderActivity extends AppCompatActivity {
         PendingIntent myPendingIntent = PendingIntent.getBroadcast(this.getApplicationContext(), reminder.getId(), myIntent, PendingIntent.FLAG_UPDATE_CURRENT);
         AlarmManager myAlarmManager = (AlarmManager)getSystemService(ALARM_SERVICE);
         //myAlarmManager.setExact(AlarmManager.RTC_WAKEUP, calSet.getTimeInMillis(), myPendingIntent);
+        assert myAlarmManager != null;
         myAlarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calSet.getTimeInMillis(), 24*60*60*1000, myPendingIntent);
         //check
         set("AlarmLabel", reminder.getLabel());

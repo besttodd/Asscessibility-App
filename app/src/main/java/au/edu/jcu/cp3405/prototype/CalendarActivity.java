@@ -9,13 +9,10 @@ import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.ContentResolver;
 import android.content.ContentUris;
-import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
-import android.icu.text.SimpleDateFormat;
-import android.icu.util.Calendar;
 import android.net.ParseException;
 import android.net.Uri;
 import android.os.Bundle;
@@ -36,7 +33,6 @@ public class CalendarActivity extends AppCompatActivity {
     private static final int REQUEST_ACCESS_CALENDAR = 222;
     private static final String TAG = "CalendarActivity";
     private static final String GOOGLE_USERNAME = "sebastianwilde22@gmail.com";
-    private CalendarView mCalendarView;
     Context context;
     SoundManager soundManager;
 
@@ -56,10 +52,10 @@ public class CalendarActivity extends AppCompatActivity {
                     new String[]{Manifest.permission.READ_CALENDAR, Manifest.permission.WRITE_CALENDAR}, REQUEST_ACCESS_CALENDAR);
         }
 
-        mCalendarView = findViewById(R.id.calendarView);
+        CalendarView mCalendarView = findViewById(R.id.calendarView);
         mCalendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
-            public void onSelectedDayChange(CalendarView CalendarView, int year, int month, int dayOfMonth) {
+            public void onSelectedDayChange(@NonNull CalendarView CalendarView, int year, int month, int dayOfMonth) {
                 soundManager.playSound(SoundManager.NEUTRAL);
                 date = year + "/" + month + "/" + dayOfMonth;
                 Log.d(TAG, "onSelectedDayChange: yyyy/mm/dd:" + date);

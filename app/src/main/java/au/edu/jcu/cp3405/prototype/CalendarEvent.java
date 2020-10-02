@@ -1,5 +1,7 @@
 package au.edu.jcu.cp3405.prototype;
 
+import androidx.annotation.NonNull;
+
 import java.util.Date;
 
 /*
@@ -25,9 +27,6 @@ public class CalendarEvent implements Comparable<CalendarEvent>{
     private String title;
     private Date begin, end;
     private boolean allDay;
-
-    public CalendarEvent() {
-    }
 
     public CalendarEvent(String title, Date begin, Date end, boolean allDay) {
         setTitle(title);
@@ -68,6 +67,7 @@ public class CalendarEvent implements Comparable<CalendarEvent>{
         this.allDay = allDay;
     }
 
+    @NonNull
     @Override
     public String toString(){
         return getTitle() + " " + getBegin() + " " + getEnd() + " " + isAllDay();

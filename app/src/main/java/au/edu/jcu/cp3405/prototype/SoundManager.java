@@ -13,14 +13,12 @@ public class SoundManager extends Application {
     private int[] sounds;
     int sound;
     boolean soundOn;
-    private int streamId;
     private boolean loaded;
 
     public SoundManager() {
         sounds = new int[4];
         sound = 1;
         soundOn = true;
-        streamId = -1;
 
         soundPool = new SoundPool(5, android.media.AudioManager.STREAM_MUSIC, 0);
         soundPool.setOnLoadCompleteListener(new SoundPool.OnLoadCompleteListener() {
@@ -51,7 +49,7 @@ public class SoundManager extends Application {
         soundPool.play(sounds[soundNum], sound, sound, 1, 0, 1);
     }
 
-    public void toggleSound() {
+    /*public void toggleSound() {
         if (soundOn) {
             muteSound();
             soundOn = false;
@@ -73,7 +71,7 @@ public class SoundManager extends Application {
 
     boolean audioReady() {
         return loaded;
-    }
+    }*/
 
     /*void closeAudio() {
         sounds = null;

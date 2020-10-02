@@ -88,8 +88,10 @@ public class ViewRemindersActivity extends AppCompatActivity {
         AlarmManager myAlarmManager = (AlarmManager)getSystemService(ALARM_SERVICE);
         PendingIntent pendingIntent = PendingIntent.getBroadcast(this, reminderList.get(position).getId(), intent, PendingIntent.FLAG_NO_CREATE);
 
-        if (pendingIntent!=null)
+        if (pendingIntent !=null ) {
+            assert myAlarmManager != null;
             myAlarmManager.cancel(pendingIntent);
+        }
 
         reminderList.remove(position);
         saveList("ReminderList", reminderList);

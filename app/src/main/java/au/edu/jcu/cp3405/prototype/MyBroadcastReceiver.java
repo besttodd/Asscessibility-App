@@ -1,9 +1,9 @@
 package au.edu.jcu.cp3405.prototype;
 
+import android.annotation.SuppressLint;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.icu.text.DateFormat;
 import android.icu.text.SimpleDateFormat;
 import android.icu.util.Calendar;
@@ -16,15 +16,6 @@ import android.util.Log;
 import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
-
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-
-import java.lang.reflect.Type;
-import java.util.ArrayList;
-import java.util.List;
-
-import static au.edu.jcu.cp3405.prototype.NewReminderActivity.MyPREFERENCES;
 
 public class MyBroadcastReceiver extends BroadcastReceiver {
 
@@ -43,7 +34,7 @@ public class MyBroadcastReceiver extends BroadcastReceiver {
 
         //Light Up phone
         Toast.makeText(context, "Don't FORGET", Toast.LENGTH_LONG).show();
-        DateFormat df = new SimpleDateFormat("EEE, d MMM yyyy, HH:mm");
+        @SuppressLint("SimpleDateFormat") DateFormat df = new SimpleDateFormat("EEE, d MMM yyyy, HH:mm");
         String date = df.format(Calendar.getInstance().getTime());
         Log.d("Receiver", "ALERT====================================================================" + date);
 
@@ -62,6 +53,7 @@ public class MyBroadcastReceiver extends BroadcastReceiver {
 
         // Vibrate the mobile phone
         Vibrator vibrator = (Vibrator) context.getSystemService(Context.VIBRATOR_SERVICE);
+        assert vibrator != null;
         vibrator.vibrate(2000);
 
         //Delete alarm

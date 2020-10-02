@@ -57,7 +57,7 @@ public class ReminderAdapter extends BaseAdapter {
     }
 
     private String getTime(Reminder reminder) {
-        String mins = "";
+        String mins;
         if (reminder.getMin() < 10) {
             mins = "0" + reminder.getMin();
         }else {

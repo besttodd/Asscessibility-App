@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.appcompat.widget.LinearLayoutCompat
+<FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+<androidx.appcompat.widget.LinearLayoutCompat
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorOldBG"
@@ -37,7 +40,8 @@
             android:layout_weight="1"
             android:ems="10"
             android:inputType="textPersonName"
-            android:textSize="28sp" />
+            android:textSize="28sp"
+            android:focusableInTouchMode="false" />
     </LinearLayout>
 
     <LinearLayout
@@ -62,7 +66,8 @@
             android:layout_weight="1"
             android:ems="10"
             android:inputType="phone"
-            android:textSize="28sp" />
+            android:textSize="28sp"
+            android:focusableInTouchMode="false" />
     </LinearLayout>
 
     <LinearLayout
@@ -87,7 +92,8 @@
             android:layout_weight="1"
             android:ems="10"
             android:inputType="textEmailAddress"
-            android:textSize="28sp" />
+            android:textSize="28sp"
+            android:focusableInTouchMode="false" />
     </LinearLayout>
 
     <LinearLayout
@@ -119,6 +125,13 @@
             android:text="@string/save"
             android:textColor="#FFFFFF"
             android:textSize="36sp" />
-
     </LinearLayout>
 </androidx.appcompat.widget.LinearLayoutCompat>
+    <au.edu.jcu.cp3405.prototype.CustomKeyboard
+        android:id="@+id/keyboard"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_gravity="bottom"
+        android:background="@color/colorBlue"/>
+    </FrameLayout>

@@ -7,8 +7,8 @@ import android.util.Log;
 
 public class SoundManager extends Application {
     public static final int CONFIRM = 1;
-    public static final int NEUTRAL = 1;
     public static final int CANCEL = 2;
+    public static final int NEUTRAL = 3;
     private SoundPool soundPool;
     private int[] sounds;
     int sound;
@@ -42,7 +42,7 @@ public class SoundManager extends Application {
         sounds[0] = soundPool.load(context, R.raw.alarm_tone, 0);
         sounds[1] = soundPool.load(context, R.raw.confirm, 0);
         sounds[2] = soundPool.load(context, R.raw.cancel, 0);
-        //sounds[3] = soundPool.load(context, R.raw.incorrect, 0);
+        sounds[3] = soundPool.load(context, R.raw.neutral, 0);
     }
 
     public void playSound(int soundNum) {

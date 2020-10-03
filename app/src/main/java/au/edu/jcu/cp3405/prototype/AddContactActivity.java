@@ -2,16 +2,13 @@ package au.edu.jcu.cp3405.prototype;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.Activity;
 import android.content.ContentProviderOperation;
 import android.content.ContentProviderResult;
 import android.content.Context;
 import android.os.Bundle;
 import android.provider.ContactsContract;
-import android.text.InputType;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputConnection;
 import android.view.inputmethod.InputMethodManager;
@@ -41,37 +38,37 @@ public class AddContactActivity extends AppCompatActivity {
         // Make the custom keyboard appear
         contactName.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override public void onFocusChange(View v, boolean hasFocus) {
-                hideDefaultKeyboard();
+                hideDefaultKeyboard(v);
                 showCustomKeyboard((EditText) v);
             }
         });
         contactName.setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) {
-                hideDefaultKeyboard();
+                hideDefaultKeyboard(v);
                 showCustomKeyboard((EditText) v);
             }
         });
         contactNumber.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override public void onFocusChange(View v, boolean hasFocus) {
-                hideDefaultKeyboard();
+                hideDefaultKeyboard(v);
                 showCustomKeyboard((EditText) v);
             }
         });
         contactNumber.setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) {
-                hideDefaultKeyboard();
+                hideDefaultKeyboard(v);
                 showCustomKeyboard((EditText) v);
             }
         });
         contactEmail.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override public void onFocusChange(View v, boolean hasFocus) {
-                hideDefaultKeyboard();
+                hideDefaultKeyboard(v);
                 showCustomKeyboard((EditText) v);
             }
         });
         contactEmail.setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) {
-                hideDefaultKeyboard();
+                hideDefaultKeyboard(v);
                 showCustomKeyboard((EditText) v);
             }
         });
@@ -82,11 +79,10 @@ public class AddContactActivity extends AppCompatActivity {
     }
 
     public void saveContact(View view) {
-        //Check input
-
+        //Todo: Check input
         EditText input = findViewById(R.id.contactName);
         String name = input.getText().toString();
-        //manipulate for first and last name
+        //Todo: manipulate for first and last name
         input = findViewById(R.id.contactPhone);
         //int phoneNum = Integer.parseInt(input.getText().toString());
         String phoneNum = input.getText().toString();
@@ -145,13 +141,14 @@ public class AddContactActivity extends AppCompatActivity {
         keyboard.setEnabled(false);
     }
 
-    public void hideDefaultKeyboard() {
+    public void hideDefaultKeyboard(View view) {
         // this will give us the view which is currently focus in this layout
-        View view = this.getCurrentFocus();
+        //View view = this.getCurrentFocus();
         // if nothing is currently focus then this will protect the app from crash
         if (view != null) {
             // now assign the system service to InputMethodManager
             InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+            assert imm != null;
             imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
         }
     }

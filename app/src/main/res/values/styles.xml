@@ -14,11 +14,20 @@
         <item name="android:textSize">32sp</item>
         <item name="android:padding">16dp</item>
     </style>
-
     <style name="SpinnerColorTheme">
         <item name="android:textColor">#FFFFFF</item>
         <item name="android:background">@color/colorOldBG</item>
         <item name="android:textSize">38sp</item>
+    </style>
+    <style name="CustomKeyboardColorTheme">
+        <item name="android:textColor">#FFFFFF</item>
+        <item name="android:textSize">32sp</item>
+        <item name="android:padding">16dp</item>
+        <item name="textAllCaps">false</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
     </style>
 
 </resources>

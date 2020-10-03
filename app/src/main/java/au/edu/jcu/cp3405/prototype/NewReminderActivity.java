@@ -15,6 +15,9 @@ import android.text.method.DigitsKeyListener;
 import android.text.method.KeyListener;
 import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputConnection;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.RadioButton;
@@ -46,6 +49,8 @@ public class NewReminderActivity extends AppCompatActivity {
     CheckBox chkSat;
     CheckBox chkSun;
 
+    CustomKeyboard keyboard;
+
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,6 +69,7 @@ public class NewReminderActivity extends AppCompatActivity {
         hourSpinner = findViewById(R.id.hoursSpinner);
         minText = findViewById(R.id.minutesEditText);
         hourSpinner.setSelection(9);
+        keyboard = findViewById(R.id.keyboard);
 
         Calendar calNow = Calendar.getInstance();
         calSet = (Calendar) calNow.clone();
@@ -73,6 +79,20 @@ public class NewReminderActivity extends AppCompatActivity {
         if(reminderList == null || reminderList.isEmpty()){
             reminderList = new ArrayList<>();
         }
+
+        // Make the custom keyboard appear
+        textInput.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override public void onFocusChange(View v, boolean hasFocus) {
+                hideDefaultKeyboard(v);
+                showCustomKeyboard((EditText) v);
+            }
+        });
+        textInput.setOnClickListener(new View.OnClickListener() {
+            @Override public void onClick(View v) {
+                hideDefaultKeyboard(v);
+                showCustomKeyboard((EditText) v);
+            }
+        });
     }
 
     @RequiresApi(api = Build.VERSION_CODES.N)
@@ -242,5 +262,24 @@ public class NewReminderActivity extends AppCompatActivity {
     public void onBackPressed(View view) {
         soundManager.playSound(SoundManager.CANCEL);
         onBackPressed();
+    }
+
+    public void hideDefaultKeyboard(View view) {
+        // this will give us the view which is currently focus in this layout
+        //View view = this.getCurrentFocus();
+        // if nothing is currently focus then this will protect the app from crash
+        if (view != null) {
+            // now assign the system service to InputMethodManager
+            InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+            assert imm != null;
+            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+        }
+    }
+
+    public void showCustomKeyboard(EditText editText) {
+        keyboard.setVisibility(View.VISIBLE);
+        keyboard.setEnabled(true);
+        InputConnection ic = editText.onCreateInputConnection(new EditorInfo());
+        keyboard.setInputConnection(ic);
     }
 }

@@ -1,18 +1,23 @@
 package au.edu.jcu.cp3405.prototype;
 
 import android.content.Context;
+import android.os.Handler;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.util.SparseArray;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.InputConnection;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 
-public class CustomKeyboard extends LinearLayout implements View.OnClickListener {
+import java.util.ArrayList;
+import java.util.List;
+
+public class CustomKeyboard extends LinearLayout implements View.OnTouchListener {
 
     private ImageButton mButtonDelete;
     private Button mButton2;
@@ -29,8 +34,12 @@ public class CustomKeyboard extends LinearLayout implements View.OnClickListener
     long lastTouchTime = 0;
     long currentTouchTime = 0;
     int tapCount = 0;
-
     int clicks = 0;
+
+    boolean delayTime = true;
+    private final Handler handler = new Handler();
+    private Runnable runnable;
+    List<Long> taps = new ArrayList<>();
 
     // This will map the button resource id to the String value that we want to
     // input when that button is clicked.
@@ -65,17 +74,17 @@ public class CustomKeyboard extends LinearLayout implements View.OnClickListener
         mButton10 = findViewById(R.id.kbButton10);
         mButtonEnter = findViewById(R.id.kbButtonEnter);
 
-        mButtonDelete.setOnClickListener(this);
+        /*mButtonDelete.setOnClickListener(this);
         mButton2.setOnClickListener(this);
         mButton3.setOnClickListener(this);
         mButton4.setOnClickListener(this);
         mButton5.setOnClickListener(this);
-        mButton6.setOnClickListener(this);
-        mButton7.setOnClickListener(this);
-        mButton8.setOnClickListener(this);
+        mButton6.setOnClickListener(this);*/
+        mButton7.setOnTouchListener((OnTouchListener) this);
+        /*mButton8.setOnClickListener(this);
         mButton9.setOnClickListener(this);
         mButton10.setOnClickListener(this);
-        mButtonEnter.setOnClickListener(this);
+        mButtonEnter.setOnClickListener(this);*/
 
         keyValues.put(R.id.kbButtonDelete, getLetter(R.id.kbButtonDelete));
         keyValues.put(R.id.kbButton2, getLetter(R.id.kbButton2));
@@ -119,7 +128,7 @@ public class CustomKeyboard extends LinearLayout implements View.OnClickListener
         }
     }
 
-    @Override
+    /*@Override
     public void onClick(View view) {
         // do nothing if the InputConnection has not been set yet
         if (inputConnection == null) return;
@@ -147,9 +156,39 @@ public class CustomKeyboard extends LinearLayout implements View.OnClickListener
             String input = letters[clicks-1];
             inputConnection.commitText(input, 1);
         }
+    }*/
+
+    @Override
+    public boolean onTouch(final View v, MotionEvent event) {
+        int eventaction = event.getAction();
+        if (eventaction == MotionEvent.ACTION_UP) {
+            //get system current milliseconds
+            long time = System.currentTimeMillis();
+            if (delayTime) {
+                delayTime = false;
+                handler.postDelayed(runnable = new Runnable() {
+                    @Override
+                    public void run() {
+                        Log.d("Touch Event", taps.size()+"- Taps=============================================");
+                        buttonClicked(v, taps.size());
+                        taps.clear();
+                        delayTime = true;
+                    }
+                }, 1000);
+            } else if (taps.size() == 4) {
+                Log.d("Touch Event", "FOUR Taps=============================================");
+                handler.removeCallbacks(runnable);
+                taps.clear();
+                delayTime = true;
+                return true;
+            } else {
+                taps.add(time);
+            }
+        }
+        return false;
     }
 
-    private int newGetClicks() {
+    /*private int newGetClicks() {
         lastTouchTime = currentTouchTime;
         currentTouchTime = System.currentTimeMillis();
 
@@ -169,6 +208,32 @@ public class CustomKeyboard extends LinearLayout implements View.OnClickListener
             return 2;
         } else {
             return 1;
+        }
+    }*/
+
+    public void buttonClicked(View view, int letter) {
+        if (inputConnection == null) return;
+
+        // Delete text or input key value
+        // All communication goes through the InputConnection
+        if (view.getId() == R.id.kbButtonDelete) {
+            CharSequence selectedText = inputConnection.getSelectedText(0);
+            if (TextUtils.isEmpty(selectedText)) {
+                // no selection, so delete previous character
+                inputConnection.deleteSurroundingText(1, 0);
+            } else {
+                // delete the selection
+                inputConnection.commitText("", 1);
+            }
+        } else if (view.getId() == R.id.kbButtonEnter) {
+            //if there is a next editview set focus else hide keyboard
+            ((View) view.getParent().getParent()).setVisibility(View.GONE);
+            view.setEnabled(false);
+        } else {
+            String value = keyValues.get(view.getId());
+            String[] letters = value.split(" ");
+            String input = letters[letter];
+            inputConnection.commitText(input, 1);
         }
     }
 

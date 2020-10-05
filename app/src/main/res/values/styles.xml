@@ -9,18 +9,21 @@
         <item name="android:spinnerItemStyle">@style/SpinnerColorTheme</item>
         <item name="spinnerDropDownItemStyle">@style/SpinnerColorTheme</item>
     </style>
+
     <style name="ColorTheme">
-        <item name="android:textColor">#FFFFFF</item>
+        <item name="android:textColor">@color/colorWhite</item>
         <item name="android:textSize">32sp</item>
         <item name="android:padding">16dp</item>
     </style>
+
     <style name="SpinnerColorTheme">
-        <item name="android:textColor">#FFFFFF</item>
+        <item name="android:textColor">@color/colorWhite</item>
         <item name="android:background">@color/colorOldBG</item>
         <item name="android:textSize">38sp</item>
     </style>
+
     <style name="CustomKeyboardColorTheme">
-        <item name="android:textColor">#FFFFFF</item>
+        <item name="android:textColor">@color/colorWhite</item>
         <item name="android:textSize">32sp</item>
         <item name="android:padding">16dp</item>
         <item name="textAllCaps">false</item>
@@ -30,4 +33,17 @@
         <item name="android:layout_height">wrap_content</item>
     </style>
 
+    <style name="CalenderViewCustom" parent="Theme.AppCompat">
+        <item name="colorAccent">@color/colorRed</item>
+        <item name="colorPrimary">@color/colorWhite</item>
+    </style>
+    <style name="CalenderViewDateCustomText" parent="android:TextAppearance.DeviceDefault.Medium">
+        <item name="android:textColor">@color/colorWhite</item>
+        <item name="android:weekNumberColor">@color/colorOldRed</item>
+        <item name="android:textSize">24sp</item>
+    </style>
+    <style name="CalenderViewWeekCustomText" parent="android:TextAppearance.DeviceDefault.Medium">
+        <item name="android:textColor">@color/colorWhite</item>
+        <item name="android:textSize">24sp</item>
+    </style>
 </resources>

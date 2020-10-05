@@ -113,8 +113,8 @@ public class CalendarActivity extends AppCompatActivity {
         long now = new Date().getTime();
 
         // create the time span based on the inputs
-        ContentUris.appendId(builder, now - (DateUtils.DAY_IN_MILLIS * 1) - (DateUtils.HOUR_IN_MILLIS * 24));
-        ContentUris.appendId(builder, now + (DateUtils.DAY_IN_MILLIS * 1) + (DateUtils.HOUR_IN_MILLIS * 24));
+        ContentUris.appendId(builder, now/* - (DateUtils.DAY_IN_MILLIS * 1) - (DateUtils.HOUR_IN_MILLIS * 24)*/);
+        ContentUris.appendId(builder, now + (DateUtils.DAY_IN_MILLIS * 2) + (DateUtils.HOUR_IN_MILLIS * 24));
 
         // Create an event cursor to find all events in the calendar
         Cursor eventCursor = contentResolver.query(builder.build(),
@@ -126,7 +126,6 @@ public class CalendarActivity extends AppCompatActivity {
         // If there are actual events in the current calendar, the count will exceed zero
         if(eventCursor.getCount()>0)
         {
-
             // Create a list of calendar events for the specific calendar
             List<CalendarEvent> eventList = new ArrayList<>();
 
@@ -139,7 +138,6 @@ public class CalendarActivity extends AppCompatActivity {
 
             // Adds the first object to the list of events
             eventList.add(ce);
-
             System.out.println(ce.toString());
 
             // While there are more events in the current calendar, move to the next instance
@@ -148,7 +146,7 @@ public class CalendarActivity extends AppCompatActivity {
                 // Adds the object to the list of events
                 ce = loadEvent(eventCursor);
                 eventList.add(ce);
-
+                Date importantDate = ce.getBegin();
                 System.out.println(ce.toString());
             }
 

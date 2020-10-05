@@ -37,7 +37,7 @@ public class NewReminderActivity extends AppCompatActivity {
     SharedPreferences sharedpreferences;
     Calendar calSet;
     List<Reminder> reminderList = new ArrayList<>();
-
+    EditText previousField;
     EditText textInput;
     Spinner hourSpinner;
     EditText minText;
@@ -70,6 +70,7 @@ public class NewReminderActivity extends AppCompatActivity {
         minText = findViewById(R.id.minutesEditText);
         hourSpinner.setSelection(9);
         keyboard = findViewById(R.id.keyboard);
+        setFocus(textInput);
 
         Calendar calNow = Calendar.getInstance();
         calSet = (Calendar) calNow.clone();
@@ -81,16 +82,11 @@ public class NewReminderActivity extends AppCompatActivity {
         }
 
         // Make the custom keyboard appear
-        textInput.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override public void onFocusChange(View v, boolean hasFocus) {
-                hideDefaultKeyboard(v);
-                showCustomKeyboard((EditText) v);
-            }
-        });
         textInput.setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) {
                 hideDefaultKeyboard(v);
                 showCustomKeyboard((EditText) v);
+                setFocus((EditText) v);
             }
         });
     }
@@ -274,6 +270,12 @@ public class NewReminderActivity extends AppCompatActivity {
             assert imm != null;
             imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
         }
+    }
+
+    public void setFocus(EditText view) {
+        view.setBackgroundColor(getResources().getColor(R.color.colorBlue));
+        if (previousField != null) { previousField.setBackgroundColor(getResources().getColor(R.color.colorOldBG)); }
+        previousField = view;
     }
 
     public void showCustomKeyboard(EditText editText) {

@@ -28,7 +28,11 @@ public class CustomKeyboard extends LinearLayout implements View.OnTouchListener
     Button mButton7;
     Button mButton8;
     Button mButton9;
+    Button mButtonNums;
+    Button mButtonCaps;
+    Button mButtonSpace;
     boolean capsLock = false;
+    boolean nums = false;
     private boolean delayTime = true;
     private final Handler handler = new Handler();
     private Runnable runnable;
@@ -65,9 +69,10 @@ public class CustomKeyboard extends LinearLayout implements View.OnTouchListener
         mButton7 = findViewById(R.id.kbButton7);
         mButton8 = findViewById(R.id.kbButton8);
         mButton9 = findViewById(R.id.kbButton9);
-        Button mButtonNums = findViewById(R.id.kbButtonNums);
-        Button mButtonCaps = findViewById(R.id.kbButtonCaps);
-        Button mButtonEnter = findViewById(R.id.kbButtonEnter);
+        mButtonNums = findViewById(R.id.kbButtonNums);
+        mButtonCaps = findViewById(R.id.kbButtonCaps);
+        mButtonSpace = findViewById(R.id.kbButtonSpace);
+        ImageButton mButtonEnter = findViewById(R.id.kbButtonEnter);
 
         mButtonDelete.setOnTouchListener(this);
         mButton2.setOnTouchListener(this);
@@ -80,11 +85,14 @@ public class CustomKeyboard extends LinearLayout implements View.OnTouchListener
         mButton9.setOnTouchListener(this);
         mButtonNums.setOnTouchListener(this);
         mButtonCaps.setOnTouchListener(this);
+        mButtonSpace.setOnTouchListener(this);
         mButtonEnter.setOnTouchListener(this);
     }
 
     @Override
     public boolean onTouch(final View view, MotionEvent event) {
+        //Todo: Check for too many taps on smaller buttons
+
         // All communication goes through the InputConnection
         if (inputConnection == null) return false;
 
@@ -109,48 +117,58 @@ public class CustomKeyboard extends LinearLayout implements View.OnTouchListener
                     break;
                 case R.id.kbButtonNums:
                     //Todo: swap letters for numbers
+                    nums = !nums;
+                    toggleNums();
                     break;
                 case R.id.kbButtonCaps:
-                    capsLock = !capsLock;
-                    toggleCaps();
-                    break;
-                    //Todo: add 'space' and '.@'
-                default:
-                    //check number of taps
-                    //get system current milliseconds
-                    long time = System.currentTimeMillis();
-                    if (delayTime) {
-                        delayTime = false;
-                        handler.postDelayed(runnable = new Runnable() {
-                            @Override
-                            public void run() {
-                                Log.d("Touch Event", taps.size() + " - Taps===");
-                                getLetter(view, taps.size());
-                                taps.clear();
-                                delayTime = true;
-                            }
-                        }, MAX_TIME_BETWEEN_TAPS);
-                    } else if (taps.size() == 4) {
-                        Log.d("Touch Event", "FOUR Taps=============================================");
-                        handler.removeCallbacks(runnable);
-                        taps.clear();
-                        delayTime = true;
-                        return true;
-                    } else {
-                        taps.add(time);
+                    if (!nums) {
+                        capsLock = !capsLock;
+                        toggleCaps();
+                        break;
                     }
+                default:
                     soundManager.playSound(SoundManager.NEUTRAL);
-                    break;
+                    //check number of taps
+                    return checkNumTaps(view);
             }
         }
         return false;
     }
 
+    private boolean checkNumTaps(final View view) {
+        //get system current milliseconds
+        long time = System.currentTimeMillis();
+        if (delayTime) {
+            delayTime = false;
+            handler.postDelayed(runnable = new Runnable() {
+                @Override
+                public void run() {
+                    Log.d("Touch Event", taps.size() + " - Taps===");
+                    getLetter(view, taps.size());
+                    taps.clear();
+                    delayTime = true;
+                }
+            }, MAX_TIME_BETWEEN_TAPS);
+        } else if (taps.size() == 4) {
+            Log.d("Touch Event", "FOUR Taps=============================================");
+            handler.removeCallbacks(runnable);
+            taps.clear();
+            delayTime = true;
+            return true;
+        } else {
+            taps.add(time);
+        }
+        return true;
+    }
+
     public void getLetter(View view, int letter) {
+        String input;
         Button pressed = (Button) view;
         String value = (String) pressed.getText();
-        String input = value.substring(letter, letter+1);
-        if (capsLock) input = input.toUpperCase(); else input = input.toLowerCase();
+        input = value.substring(letter, letter + 1);
+        if (capsLock) input = input.toUpperCase();
+        else input = input.toLowerCase();
+        if (input.equals("\u2423")) {input = " ";}
         inputConnection.commitText(input, 1);
     }
 
@@ -163,6 +181,44 @@ public class CustomKeyboard extends LinearLayout implements View.OnTouchListener
         mButton7.setAllCaps(capsLock);
         mButton8.setAllCaps(capsLock);
         mButton9.setAllCaps(capsLock);
+    }
+
+    private void toggleNums() {
+        if (nums) {
+            mButton2.setText("2");
+            mButton3.setText("3");
+            mButton4.setText("4");
+            mButton5.setText("5");
+            mButton6.setText("6");
+            mButton7.setText("7");
+            mButton8.setText("8");
+            mButton9.setText("9");
+            mButtonCaps.setText(".@");
+            mButtonSpace.setText("0+");
+            mButtonNums.setText(getResources().getString(R.string.ABC));
+        }else {
+            mButton2.setText(getResources().getString(R.string.abc));
+            mButton3.setText(getResources().getString(R.string.def));
+            mButton4.setText(getResources().getString(R.string.ghi));
+            mButton5.setText(getResources().getString(R.string.jkl));
+            mButton6.setText(getResources().getString(R.string.mno));
+            mButton7.setText(getResources().getString(R.string.pqrs));
+            mButton8.setText(getResources().getString(R.string.tuv));
+            mButton9.setText(getResources().getString(R.string.wxyz));
+            mButtonCaps.setText(getResources().getString(R.string.aa));
+            mButtonSpace.setText(getResources().getString(R.string.space_char));
+            mButtonNums.setText(getResources().getString(R.string._1_2_3));
+        }
+    }
+
+    public void setNumKeyboard() {
+        nums = true;
+        toggleNums();
+    }
+
+    public void setLettersKeyboard() {
+        nums = false;
+        toggleNums();
     }
 
     // The activity (or some parent or controller) must give us

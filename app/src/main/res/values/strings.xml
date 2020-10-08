@@ -87,4 +87,9 @@
     <string name="aa">Aa</string>
     <string name="done">Done</string>
     <string name="space_char">␣</string>
+    <string name="dismiss">Dismiss</string>
+    <string name="snooze">Snooze</string>
+    <string name="e_contact_details">Update Emergency Contact Details</string>
+    <string name="number">Number:</string>
+    <string name="emergency_nrequirements">Emergency\nRequirements:</string>
 </resources>

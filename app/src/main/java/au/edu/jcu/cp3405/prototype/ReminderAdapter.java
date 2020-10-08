@@ -5,12 +5,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.List;
 
 public class ReminderAdapter extends BaseAdapter {
     private Context context;
+    StateListener listener;
     private List<Reminder> reminders;
 
     ReminderAdapter(Context context, List<Reminder> reminders) {
@@ -31,9 +34,9 @@ public class ReminderAdapter extends BaseAdapter {
     }
 
     public View getView(int position, View child, ViewGroup parent) {
-
         Holder holder;
         LayoutInflater layoutInflater;
+        final Button deleteButton = child.findViewById(R.id.deleteButton);
 
         if (child == null) {
             layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -53,7 +56,24 @@ public class ReminderAdapter extends BaseAdapter {
         holder.textviewtime.setText(getTime(reminders.get(position)));
         holder.textviewdays.setText(reminders.get(position).getDay());
 
+        deleteButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                deleteReminder(v);
+                Toast toast = Toast.makeText(context, "Contact deleted.", Toast.LENGTH_LONG);
+                ViewGroup group = (ViewGroup) toast.getView();
+                TextView messageTextView = (TextView) group.getChildAt(0);
+                messageTextView.setTextSize(30);
+                toast.show();
+                System.out.println("REMINDER DELETED====================================================");
+                listener.onUpdate(State.UPDATE_REMINDERS);
+            }
+        });
+
         return child;
+    }
+
+    private void deleteReminder(View view) {
     }
 
     private String getTime(Reminder reminder) {

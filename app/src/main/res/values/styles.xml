@@ -18,7 +18,7 @@
 
     <style name="SpinnerColorTheme">
         <item name="android:textColor">@color/colorWhite</item>
-        <item name="android:background">@color/colorOldBG</item>
+        <item name="android:background">@color/colorBG</item>
         <item name="android:textSize">38sp</item>
     </style>
 
@@ -39,7 +39,7 @@
     </style>
     <style name="CalenderViewDateCustomText" parent="android:TextAppearance.DeviceDefault.Medium">
         <item name="android:textColor">@color/colorWhite</item>
-        <item name="android:weekNumberColor">@color/colorOldRed</item>
+        <item name="android:weekNumberColor">@color/colorRed</item>
         <item name="android:textSize">24sp</item>
     </style>
     <style name="CalenderViewWeekCustomText" parent="android:TextAppearance.DeviceDefault.Medium">

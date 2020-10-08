@@ -4,15 +4,17 @@
     <color name="colorPrimaryDark">#3700B3</color>
     <color name="colorAccent">#03DAC5</color>
 
-    <color name="colorOldRed">#FF1643</color>
-    <color name="colorOldGreen">#7DBC39</color>
+    <color name="colorRed">#FF1643</color>
+    <color name="colorOffGreen">#7DBC39</color>
     <color name="colorOldPink">#FFC2C7</color>
-    <color name="colorOldBG">#DEB88F</color>
+    <color name="colorBG">#DEB88F</color>
 
-    <color name="colorBlue">#A4CABC</color>
-    <color name="colorOrange">#EAB364</color>
-    <color name="colorRed">#B2473E</color>
-    <color name="colorGreen">#ACBD78</color>
+    <color name="colorSkyBlue">#A4CABC</color>
+    <color name="colorBlue">#0070D2</color>
+    <color name="colorYellow">#EAB364</color>
+    <color name="colorOffRed">#F95F62</color>
+    <color name="colorGreen">#13CE66</color>
+    <color name="colorLightGreen">#ACBD78</color>
     <color name="colorWhite">#FFFFFF</color>
 
 </resources>

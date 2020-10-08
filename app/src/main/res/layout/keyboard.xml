@@ -9,16 +9,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
-            <ImageButton
+            <Button
                 android:id="@+id/kbButtonDelete"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:layout_gravity="center"
-                app:srcCompat="@android:drawable/ic_input_delete"
-                android:background="@drawable/button_red"
-                style="@style/ColorTheme"
-                android:contentDescription="@string/delete_arrow" />
+                android:background="@drawable/button_delete"
+                style="@style/ColorTheme" />
+<!--            app:srcCompat="@android:drawable/ic_input_delete"-->
             <Button
                 android:id="@+id/kbButton2"
                 style="@style/CustomKeyboardColorTheme"

@@ -12,7 +12,7 @@ import android.widget.ListView;
 
 import java.util.ArrayList;
 
-public class ListContactsActivity extends AppCompatActivity implements StateListener {
+public class ViewContactsActivity extends AppCompatActivity implements StateListener {
     SoundManager soundManager;
     ArrayList<Contact> arrayOfContacts;
     ListView listView;
@@ -30,10 +30,8 @@ public class ListContactsActivity extends AppCompatActivity implements StateList
 
     @Override
     public void onUpdate(State state) {
-        switch (state) {
-            case UPDATE_CONTACTS:
-                getAllContacts();
-                break;
+        if (state == State.UPDATE_CONTACTS) {
+            getAllContacts();
         }
     }
 

@@ -7,21 +7,18 @@ import android.content.ContentProviderResult;
 import android.content.Context;
 import android.os.Bundle;
 import android.provider.ContactsContract;
-import android.text.InputType;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputConnection;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
 
-public class AddContactActivity extends AppCompatActivity {
+public class NewContactActivity extends AppCompatActivity {
     Context context;
     SoundManager soundManager;
     CustomKeyboard keyboard;
@@ -68,36 +65,12 @@ public class AddContactActivity extends AppCompatActivity {
             }
         });
 
-        /*contactNumber.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override public void onFocusChange(View v, boolean hasFocus) {
-                hideDefaultKeyboard((EditText) v);
-                showCustomKeyboard((EditText) v);
-            }
-        });
-        contactEmail.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override public void onFocusChange(View v, boolean hasFocus) {
-                hideDefaultKeyboard((EditText) v);
-                showCustomKeyboard((EditText) v);
-                if (hasFocus) {
-                }
-                v.setBackgroundColor(getResources().getColor(R.color.colorOldBG));
-                Log.d("FocusChange", v + "======================================================");
-            }
-        });
-        contactName.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override public void onFocusChange(View v, boolean hasFocus) {
-                hideDefaultKeyboard((EditText) v);
-                showCustomKeyboard((EditText) v);
-                v.setBackgroundColor(getResources().getColor(R.color.colorBlue));
-            }
-        });*/
-
         // pass the InputConnection from the EditText to the keyboard
         InputConnection ic = contactName.onCreateInputConnection(new EditorInfo());
         keyboard.setInputConnection(ic);
     }
 
-    public void saveContact(View view) {
+    public void saveContactClicked(View view) {
         //Todo: Check input
         EditText input = findViewById(R.id.contactName);
         String name = input.getText().toString();
@@ -174,8 +147,8 @@ public class AddContactActivity extends AppCompatActivity {
     }
 
     public void setFocus(EditText view) {
-        view.setBackgroundColor(getResources().getColor(R.color.colorBlue));
-        if (previousField != null) { previousField.setBackgroundColor(getResources().getColor(R.color.colorOldBG)); }
+        view.setBackgroundColor(getResources().getColor(R.color.colorSkyBlue));
+        if (previousField != null) { previousField.setBackgroundColor(getResources().getColor(R.color.colorBG)); }
         previousField = view;
     }
 

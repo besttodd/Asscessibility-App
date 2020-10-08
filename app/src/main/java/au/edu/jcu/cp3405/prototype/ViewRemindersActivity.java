@@ -22,7 +22,7 @@ import java.util.List;
 
 import static au.edu.jcu.cp3405.prototype.NewReminderActivity.MyPREFERENCES;
 
-public class ViewRemindersActivity extends AppCompatActivity {
+public class ViewRemindersActivity extends AppCompatActivity implements StateListener {
     SoundManager soundManager;
     SharedPreferences sharedpreferences;
     List<Reminder> reminderList = new ArrayList<>();
@@ -66,6 +66,13 @@ public class ViewRemindersActivity extends AppCompatActivity {
                 }
 
             });
+        }
+    }
+
+    @Override
+    public void onUpdate(State state) {
+        if (state == State.UPDATE_REMINDERS) {
+            getList();
         }
     }
 

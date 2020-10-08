@@ -84,11 +84,21 @@ public class NewReminderActivity extends AppCompatActivity {
         // Make the custom keyboard appear
         textInput.setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) {
-                hideDefaultKeyboard(v);
                 showCustomKeyboard((EditText) v);
                 setFocus((EditText) v);
             }
         });
+        minText.setOnClickListener(new View.OnClickListener() {
+            @Override public void onClick(View v) {
+                keyboard.setNumKeyboard();
+                showCustomKeyboard((EditText) v);
+                setFocus((EditText) v);
+            }
+        });
+
+        // pass the InputConnection from the EditText to the keyboard
+        InputConnection ic = textInput.onCreateInputConnection(new EditorInfo());
+        keyboard.setInputConnection(ic);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.N)
@@ -226,7 +236,8 @@ public class NewReminderActivity extends AppCompatActivity {
         assert myAlarmManager != null;
         myAlarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calSet.getTimeInMillis(), 24*60*60*1000, myPendingIntent);
         //check
-        set("AlarmLabel", reminder.getLabel());
+        //set("AlarmLabel", reminder.getLabel());
+        set("AlarmId", String.valueOf(reminder.getId()));
         Toast.makeText(this, "Alarm set", Toast.LENGTH_LONG).show();
         Log.d("NewReminder", "ALARM: "+reminder.getId()+" -SET======================================================================");
         onBackPressed();
@@ -257,6 +268,7 @@ public class NewReminderActivity extends AppCompatActivity {
 
     public void onBackPressed(View view) {
         soundManager.playSound(SoundManager.CANCEL);
+        if( isCustomKeyboardVisible() ) hideCustomKeyboard(); else this.finish();
         onBackPressed();
     }
 
@@ -273,8 +285,9 @@ public class NewReminderActivity extends AppCompatActivity {
     }
 
     public void setFocus(EditText view) {
-        view.setBackgroundColor(getResources().getColor(R.color.colorBlue));
-        if (previousField != null) { previousField.setBackgroundColor(getResources().getColor(R.color.colorOldBG)); }
+        view.setBackgroundColor(getResources().getColor(R.color.colorSkyBlue));
+        view.setText("");
+        if (previousField != null) { previousField.setBackgroundColor(getResources().getColor(R.color.colorBG)); }
         previousField = view;
     }
 
@@ -283,5 +296,13 @@ public class NewReminderActivity extends AppCompatActivity {
         keyboard.setEnabled(true);
         InputConnection ic = editText.onCreateInputConnection(new EditorInfo());
         keyboard.setInputConnection(ic);
+    }
+
+    public void hideCustomKeyboard() {
+        keyboard.setVisibility(View.GONE);
+        keyboard.setEnabled(false);
+    }
+    public boolean isCustomKeyboardVisible() {
+        return keyboard.getVisibility() == View.VISIBLE;
     }
 }

@@ -7,9 +7,9 @@
 <androidx.appcompat.widget.LinearLayoutCompat
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorOldBG"
+    android:background="@color/colorBG"
     android:orientation="vertical"
-    tools:context=".AddContactActivity">
+    tools:context=".NewContactActivity">
 
     <TextView
         style="@style/ColorTheme"
@@ -120,7 +120,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
             android:background="@drawable/button_green"
-            android:onClick="saveContact"
+            android:onClick="saveContactClicked"
             android:padding="16dp"
             android:text="@string/save"
             android:textColor="#FFFFFF"
@@ -133,5 +133,5 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:layout_gravity="bottom"
-        android:background="@color/colorBlue"/>
+        android:background="@color/colorSkyBlue"/>
     </FrameLayout>

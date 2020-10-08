@@ -49,13 +49,13 @@ public class ContactsActivity extends AppCompatActivity {
 
     public void addNewClicked(View view) {
         soundManager.playSound(SoundManager.NEUTRAL);
-        Intent intent = new Intent(this, AddContactActivity.class);
+        Intent intent = new Intent(this, NewContactActivity.class);
         startActivity(intent);
     }
 
     public void viewContactsClicked(View view) {
         soundManager.playSound(SoundManager.NEUTRAL);
-        Intent intent = new Intent(this, ListContactsActivity.class);
+        Intent intent = new Intent(this, ViewContactsActivity.class);
         startActivity(intent);
     }
 

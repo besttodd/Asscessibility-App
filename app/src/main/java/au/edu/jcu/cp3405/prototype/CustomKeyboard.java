@@ -31,9 +31,12 @@ public class CustomKeyboard extends LinearLayout implements View.OnTouchListener
     Button mButtonNums;
     Button mButtonCaps;
     Button mButtonSpace;
+    Button mButtonDelete;
+    ImageButton mButtonEnter;
     boolean capsLock = false;
     boolean nums = false;
     private boolean delayTime = true;
+    int maxTaps = 3;
     private final Handler handler = new Handler();
     private Runnable runnable;
     private List<Long> taps = new ArrayList<>();
@@ -60,7 +63,7 @@ public class CustomKeyboard extends LinearLayout implements View.OnTouchListener
 
         soundManager = (SoundManager) context.getApplicationContext();
 
-        ImageButton mButtonDelete = findViewById(R.id.kbButtonDelete);
+        mButtonDelete = findViewById(R.id.kbButtonDelete);
         mButton2 = findViewById(R.id.kbButton2);
         mButton3 = findViewById(R.id.kbButton3);
         mButton4 = findViewById(R.id.kbButton4);
@@ -72,7 +75,7 @@ public class CustomKeyboard extends LinearLayout implements View.OnTouchListener
         mButtonNums = findViewById(R.id.kbButtonNums);
         mButtonCaps = findViewById(R.id.kbButtonCaps);
         mButtonSpace = findViewById(R.id.kbButtonSpace);
-        ImageButton mButtonEnter = findViewById(R.id.kbButtonEnter);
+        mButtonEnter = findViewById(R.id.kbButtonEnter);
 
         mButtonDelete.setOnTouchListener(this);
         mButton2.setOnTouchListener(this);
@@ -91,7 +94,7 @@ public class CustomKeyboard extends LinearLayout implements View.OnTouchListener
 
     @Override
     public boolean onTouch(final View view, MotionEvent event) {
-        //Todo: Check for too many taps on smaller buttons
+        //Todo: Check for too many taps
 
         // All communication goes through the InputConnection
         if (inputConnection == null) return false;
@@ -99,24 +102,31 @@ public class CustomKeyboard extends LinearLayout implements View.OnTouchListener
         if (event.getAction() == MotionEvent.ACTION_UP) {
             switch (view.getId()) {
                 case R.id.kbButtonDelete:
-                    CharSequence selectedText = inputConnection.getSelectedText(0);
-                    if (TextUtils.isEmpty(selectedText)) {
-                        // no selection, so delete previous character
-                        inputConnection.deleteSurroundingText(1, 0);
-                    } else {
-                        // delete the selection
-                        inputConnection.commitText("", 1);
+                    if (nums) {
+                        soundManager.playSound(SoundManager.NEUTRAL);
+                        maxTaps = 1;
+                        //check number of taps
+                        return checkNumTaps(view);
                     }
-                    soundManager.playSound(SoundManager.CANCEL);
+                    else {
+                        deleteButton();
+                        soundManager.playSound(SoundManager.CANCEL);
+                    }
                     break;
                 case R.id.kbButtonEnter:
+                    if (nums) {
+                        deleteButton();
+                        soundManager.playSound(SoundManager.CANCEL);
+                    }
+                    else {
                     //Todo: if there is a next editview set focus else save/continue/confirm
                     //hide keyboard
                     ((View) view.getParent().getParent().getParent()).setVisibility(View.GONE);
                     soundManager.playSound(SoundManager.CONFIRM);
+                    }
                     break;
                 case R.id.kbButtonNums:
-                    //Todo: swap letters for numbers
+                    soundManager.playSound(SoundManager.NEUTRAL);
                     nums = !nums;
                     toggleNums();
                     break;
@@ -126,8 +136,21 @@ public class CustomKeyboard extends LinearLayout implements View.OnTouchListener
                         toggleCaps();
                         break;
                     }
+                    maxTaps = 2;
+                case R.id.kbButtonSpace:
+                    soundManager.playSound(SoundManager.NEUTRAL);
+                    maxTaps = 1;
+                    //check number of taps
+                    return checkNumTaps(view);
+                case R.id.kbButton7:
+                case R.id.kbButton9:
+                    soundManager.playSound(SoundManager.NEUTRAL);
+                    if (nums) {maxTaps = 2;} else { maxTaps = 4; }
+                    //check number of taps
+                    return checkNumTaps(view);
                 default:
                     soundManager.playSound(SoundManager.NEUTRAL);
+                    if (nums) {maxTaps = 1;} else { maxTaps = 3; }
                     //check number of taps
                     return checkNumTaps(view);
             }
@@ -143,18 +166,17 @@ public class CustomKeyboard extends LinearLayout implements View.OnTouchListener
             handler.postDelayed(runnable = new Runnable() {
                 @Override
                 public void run() {
-                    Log.d("Touch Event", taps.size() + " - Taps===");
-                    getLetter(view, taps.size());
+                    if (taps.size() == maxTaps) {
+                        Log.d("Touch Event", "Max Taps===========================================");
+                        handler.removeCallbacks(runnable);
+                    } else {
+                        Log.d("Touch Event", taps.size() + " - Taps"+maxTaps);
+                        getLetter(view, taps.size());
+                    }
                     taps.clear();
                     delayTime = true;
                 }
             }, MAX_TIME_BETWEEN_TAPS);
-        } else if (taps.size() == 4) {
-            Log.d("Touch Event", "FOUR Taps=============================================");
-            handler.removeCallbacks(runnable);
-            taps.clear();
-            delayTime = true;
-            return true;
         } else {
             taps.add(time);
         }
@@ -193,9 +215,13 @@ public class CustomKeyboard extends LinearLayout implements View.OnTouchListener
             mButton7.setText("7");
             mButton8.setText("8");
             mButton9.setText("9");
-            mButtonCaps.setText(".@");
-            mButtonSpace.setText("0+");
+            mButtonCaps.setText(".@+");
+            mButtonSpace.setText("0");
             mButtonNums.setText(getResources().getString(R.string.ABC));
+            mButtonEnter.setBackground(getResources().getDrawable(R.drawable.button_red));
+            mButtonEnter.setImageResource(android.R.drawable.ic_input_delete);
+            mButtonDelete.setBackground(getResources().getDrawable(R.drawable.button_blue));
+            mButtonDelete.setText("1");
         }else {
             mButton2.setText(getResources().getString(R.string.abc));
             mButton3.setText(getResources().getString(R.string.def));
@@ -208,6 +234,10 @@ public class CustomKeyboard extends LinearLayout implements View.OnTouchListener
             mButtonCaps.setText(getResources().getString(R.string.aa));
             mButtonSpace.setText(getResources().getString(R.string.space_char));
             mButtonNums.setText(getResources().getString(R.string._1_2_3));
+            mButtonEnter.setBackground(getResources().getDrawable(R.drawable.button_green));
+            mButtonEnter.setImageResource(R.drawable.tick);
+            mButtonDelete.setBackground(getResources().getDrawable(R.drawable.button_delete));
+            mButtonDelete.setText("");
         }
     }
 
@@ -219,6 +249,17 @@ public class CustomKeyboard extends LinearLayout implements View.OnTouchListener
     public void setLettersKeyboard() {
         nums = false;
         toggleNums();
+    }
+
+    private void deleteButton() {
+        CharSequence selectedText = inputConnection.getSelectedText(0);
+        if (TextUtils.isEmpty(selectedText)) {
+            // no selection, so delete previous character
+            inputConnection.deleteSurroundingText(1, 0);
+        } else {
+            // delete the selection
+            inputConnection.commitText("", 1);
+        }
     }
 
     // The activity (or some parent or controller) must give us

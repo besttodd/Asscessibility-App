@@ -7,7 +7,7 @@
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/colorOldBG"
+        android:background="@color/colorBG"
         android:orientation="vertical"
         tools:context=".NewReminderActivity">
 
@@ -72,7 +72,8 @@
                 android:maxLength="2"
                 android:text="@string/_00"
                 android:autofillHints="Enter minutes"
-                tools:ignore="LabelFor" />
+                tools:ignore="LabelFor"
+                android:focusableInTouchMode="false" />
             <!--<Spinner
                 android:id="@+id/minutesSpinner"
                 android:layout_width="match_parent"
@@ -220,6 +221,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
-        android:background="@color/colorBlue"
+        android:background="@color/colorSkyBlue"
         android:orientation="vertical" />
 </FrameLayout>

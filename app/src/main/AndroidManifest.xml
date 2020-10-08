@@ -18,6 +18,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".EmergencyContactActivity"
+            android:windowSoftInputMode="adjustResize" />
+        <activity android:name=".EMIActivity" />
         <activity android:name=".ViewRemindersActivity" />
         <activity android:name=".CalendarActivity" />
         <activity android:name=".NewCalendarActivity" />
@@ -25,14 +28,14 @@
         <activity android:name=".NewReminderActivity" />
         <activity android:name=".PhoneActivity" />
         <activity android:name=".ClockActivity" />
-        <activity android:name=".ListContactsActivity" />
+        <activity android:name=".ViewContactsActivity" />
         <activity android:name=".ContactsActivity" />
-        <activity android:name=".AddContactActivity"
+        <activity
+            android:name=".NewContactActivity"
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

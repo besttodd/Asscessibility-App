@@ -53,7 +53,7 @@ public class ContactsAdapter extends ArrayAdapter<Contact> {
                     messageTextView.setTextSize(30);
                     toast.show();
                     System.out.println("CONTACT DELETED====================================================");
-                    listener.onUpdate(State.UPDATE_CONTACTS);
+                    listener.onUpdate(State.UPDATE_REMINDERS);
                 } else {
                     Toast toast = Toast.makeText(context, "Contact not found.", Toast.LENGTH_LONG);
                     ViewGroup group = (ViewGroup) toast.getView();

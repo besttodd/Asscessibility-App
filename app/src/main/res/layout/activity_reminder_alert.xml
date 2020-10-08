@@ -25,7 +25,18 @@
         android:background="@drawable/button_red"
         android:onClick="onBackPressed"
         android:padding="16dp"
-        android:text="Dismiss"
-        android:textColor="#FFFFFF"
+        android:text="@string/dismiss"
+        android:textColor="@color/colorWhite"
+        android:textSize="32sp" />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="12dp"
+        android:background="@drawable/button_blue"
+        android:onClick="onSnoozePressed"
+        android:padding="16dp"
+        android:text="@string/snooze"
+        android:textColor="@color/colorWhite"
         android:textSize="32sp" />
 </androidx.appcompat.widget.LinearLayoutCompat>

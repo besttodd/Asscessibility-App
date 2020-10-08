@@ -10,7 +10,7 @@ import android.view.inputmethod.InputConnection;
 import android.widget.EditText;
 import android.widget.ScrollView;
 
-public class EmergencyContactActivity extends AppCompatActivity {
+public class NewEmergencyInfoActivity extends AppCompatActivity {
 
     Context context;
     SoundManager soundManager;
@@ -21,49 +21,58 @@ public class EmergencyContactActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_emergency_contact);
+        setContentView(R.layout.activity_new_emergency_info);
         context = this;
         soundManager = (SoundManager) getApplicationContext();
 
-        EditText eContactName = findViewById(R.id.eContactName);
-        EditText eContactNumber = findViewById(R.id.eContactPhone);
-        EditText eRequirements = findViewById(R.id.eRequirements);
+        EditText conditions = findViewById(R.id.conditions);
+        EditText allergies = findViewById(R.id.allergies);
+        EditText medications = findViewById(R.id.medications);
+        EditText bloodType = findViewById(R.id.bloodType);
         scrollView = findViewById(R.id.scroller);
         keyboard = findViewById(R.id.keyboard);
-        setFocus(eContactName);
+        setFocus(conditions);
 
         //Make custom
-        eContactName.setOnClickListener(new View.OnClickListener() {
+        conditions.setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) {
                 keyboard.setLettersKeyboard();
                 setFocus((EditText) v);
                 showCustomKeyboard((EditText) v);
             }
         });
-        eContactNumber.setOnClickListener(new View.OnClickListener() {
+        allergies.setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) {
                 keyboard.setNumKeyboard();
                 setFocus((EditText) v);
                 showCustomKeyboard((EditText) v);
             }
         });
-        eRequirements.setOnClickListener(new View.OnClickListener() {
+        medications.setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) {
                 keyboard.setLettersKeyboard();
                 setFocus((EditText) v);
                 showCustomKeyboard((EditText) v);
-                scrollView.fullScroll(View.FOCUS_UP);
+                scrollView.fullScroll(View.FOCUS_DOWN);
+            }
+        });
+        bloodType.setOnClickListener(new View.OnClickListener() {
+            @Override public void onClick(View v) {
+                keyboard.setLettersKeyboard();
+                setFocus((EditText) v);
+                showCustomKeyboard((EditText) v);
+                scrollView.fullScroll(View.FOCUS_DOWN);
             }
         });
 
         // pass the InputConnection from the EditText to the keyboard
-        InputConnection ic = eContactName.onCreateInputConnection(new EditorInfo());
+        InputConnection ic = conditions.onCreateInputConnection(new EditorInfo());
         keyboard.setInputConnection(ic);
     }
 
     public void setFocus(EditText view) {
-        view.setBackgroundColor(getResources().getColor(R.color.colorSkyBlue));
-        if (previousField != null) { previousField.setBackgroundColor(getResources().getColor(R.color.colorBG)); }
+        view.setBackground(getResources().getDrawable(R.drawable.edittext_focus_style));
+        if (previousField != null) { previousField.setBackground(getResources().getDrawable(R.drawable.edittext_style)); }
         previousField = view;
     }
 

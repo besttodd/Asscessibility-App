@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/BGcolor"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:padding="10dp"
+        android:text="@string/emergency_medical_info"
+        android:textColor="@color/blue"
+        android:textSize="26sp"
+        android:textStyle="bold" />
+
+    <!--Main info-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/blue"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/textView"
+            style="@style/ColorTheme"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:labelFor="@id/conditions"
+            android:text="@string/current_medical_conditions"
+            android:textSize="26sp" />
+
+        <EditText
+            android:id="@+id/conditions"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/edittext_style"
+            android:ems="26"
+            android:focusableInTouchMode="false"
+            android:textSize="26sp" />
+
+        <TextView
+            android:id="@+id/textView2"
+            style="@style/ColorTheme"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:labelFor="@id/allergies"
+            android:text="@string/allergies"
+            android:textSize="26sp" />
+
+        <EditText
+            android:id="@+id/allergies"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/edittext_style"
+            android:ems="26"
+            android:focusableInTouchMode="false"
+            android:importantForAutofill="no"
+            android:textSize="26sp" />
+
+        <TextView
+            android:id="@+id/textView3"
+            style="@style/ColorTheme"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:labelFor="@id/medications"
+            android:text="@string/current_medications"
+            android:textSize="26sp" />
+
+        <EditText
+            android:id="@+id/medications"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/edittext_style"
+            android:ems="26"
+            android:focusableInTouchMode="false"
+            android:importantForAutofill="no"
+            android:textSize="26sp" />
+
+        <TextView
+            android:id="@+id/textView4"
+            style="@style/ColorTheme"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:labelFor="@id/bloodType"
+            android:text="@string/blood_type"
+            android:textSize="26sp" />
+
+        <EditText
+            android:id="@+id/bloodType"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/edittext_style"
+            android:ems="26"
+            android:focusableInTouchMode="false"
+            android:importantForAutofill="no"
+            android:textSize="26sp" />
+    </LinearLayout>
+
+    <!--Emergency Contacts-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        android:background="@color/blue"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:paddingTop="6dp"
+        android:paddingBottom="6dp">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Bob"
+                android:textColor="@color/white"
+                android:textSize="24sp" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/phone" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Jane"
+                android:textColor="@color/white"
+                android:textSize="24sp" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/phone" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <Button
+        style="@style/ColorTheme"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="@drawable/button_blue"
+        android:onClick="editEmergencyContact"
+        android:text="Edit" />
+</LinearLayout>

@@ -9,7 +9,7 @@
         android:id="@+id/scroller"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/colorBG"
+        android:background="@color/BGcolor"
         android:fadeScrollbars="false">
 
         <LinearLayout
@@ -248,20 +248,20 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="@color/colorBlue"
+                android:background="@color/blue"
                 android:gravity="center"
                 android:text="EMI"
-                android:textColor="@color/colorWhite"
+                android:textColor="@color/white"
                 android:textSize="30sp"
                 android:onClick="emiClicked" />
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="@color/colorGreen"
+                android:background="@color/green"
                 android:gravity="center"
                 android:text="Help"
-                android:textColor="@color/colorWhite"
+                android:textColor="@color/white"
                 android:textSize="30sp" />
         </LinearLayout>
     </LinearLayout>
@@ -309,7 +309,7 @@
                 android:background="@drawable/button_red"
                 android:padding="4dp"
                 android:text="Cancel"
-                android:textColor="@color/colorWhite"
+                android:textColor="@color/white"
                 android:textSize="28sp"
                 android:onClick="cancelEmergency"/>
 
@@ -320,7 +320,7 @@
                 android:background="@drawable/button_green"
                 android:padding="4dp"
                 android:text="Confirm"
-                android:textColor="@color/colorWhite"
+                android:textColor="@color/white"
                 android:textSize="28sp" />
         </LinearLayout>
     </LinearLayout>

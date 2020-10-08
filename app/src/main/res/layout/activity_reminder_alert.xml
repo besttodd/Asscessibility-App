@@ -26,7 +26,7 @@
         android:onClick="onBackPressed"
         android:padding="16dp"
         android:text="@string/dismiss"
-        android:textColor="@color/colorWhite"
+        android:textColor="@color/white"
         android:textSize="32sp" />
     <Button
         android:layout_width="wrap_content"
@@ -37,6 +37,6 @@
         android:onClick="onSnoozePressed"
         android:padding="16dp"
         android:text="@string/snooze"
-        android:textColor="@color/colorWhite"
+        android:textColor="@color/white"
         android:textSize="32sp" />
 </androidx.appcompat.widget.LinearLayoutCompat>

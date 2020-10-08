@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewParent;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 
@@ -58,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void emiClicked(View view) {
         soundManager.playSound(SoundManager.NEUTRAL);
-        Intent intent = new Intent(this, EMIActivity.class);
+        Intent intent = new Intent(this, EmergencyInfoActivity.class);
         startActivity(intent);
     }
 

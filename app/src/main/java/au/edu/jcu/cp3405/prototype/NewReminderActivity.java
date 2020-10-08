@@ -285,9 +285,9 @@ public class NewReminderActivity extends AppCompatActivity {
     }
 
     public void setFocus(EditText view) {
-        view.setBackgroundColor(getResources().getColor(R.color.colorSkyBlue));
+        view.setBackground(getResources().getDrawable(R.drawable.edittext_focus_style));
         view.setText("");
-        if (previousField != null) { previousField.setBackgroundColor(getResources().getColor(R.color.colorBG)); }
+        if (previousField != null) { previousField.setBackground(getResources().getDrawable(R.drawable.edittext_style)); }
         previousField = view;
     }
 

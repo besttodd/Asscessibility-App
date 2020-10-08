@@ -6,19 +6,19 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-public class EMIActivity extends AppCompatActivity {
+public class EmergencyInfoActivity extends AppCompatActivity {
     SoundManager soundManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_emergency);
+        setContentView(R.layout.activity_emergency_info);
         soundManager = (SoundManager) getApplicationContext();
     }
 
     public void editEmergencyContact(View view) {
         soundManager.playSound(SoundManager.NEUTRAL);
-        Intent intent = new Intent(this, EmergencyContactActivity.class);
+        Intent intent = new Intent(this, NewEmergencyInfoActivity.class);
         startActivity(intent);
     }
 }

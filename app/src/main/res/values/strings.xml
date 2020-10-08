@@ -92,4 +92,9 @@
     <string name="e_contact_details">Update Emergency Contact Details</string>
     <string name="number">Number:</string>
     <string name="emergency_nrequirements">Emergency\nRequirements:</string>
+    <string name="emergency_medical_info">Emergency Medical Info.</string>
+    <string name="current_medical_conditions">Current Medical Conditions</string>
+    <string name="allergies">Allergies</string>
+    <string name="current_medications">Current Medications</string>
+    <string name="blood_type">Blood Type</string>
 </resources>

@@ -18,9 +18,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".EmergencyContactActivity"
+        <activity android:name=".NewEmergencyInfoActivity"
             android:windowSoftInputMode="adjustResize" />
-        <activity android:name=".EMIActivity" />
+        <activity android:name=".EmergencyInfoActivity" />
         <activity android:name=".ViewRemindersActivity" />
         <activity android:name=".CalendarActivity" />
         <activity android:name=".NewCalendarActivity" />

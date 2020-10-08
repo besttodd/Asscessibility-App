@@ -147,8 +147,8 @@ public class NewContactActivity extends AppCompatActivity {
     }
 
     public void setFocus(EditText view) {
-        view.setBackgroundColor(getResources().getColor(R.color.colorSkyBlue));
-        if (previousField != null) { previousField.setBackgroundColor(getResources().getColor(R.color.colorBG)); }
+        view.setBackground(getResources().getDrawable(R.drawable.edittext_focus_style));
+        if (previousField != null) { previousField.setBackground(getResources().getDrawable(R.drawable.edittext_style)); }
         previousField = view;
     }
 

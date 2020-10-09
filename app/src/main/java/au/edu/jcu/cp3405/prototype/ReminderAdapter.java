@@ -1,6 +1,7 @@
 package au.edu.jcu.cp3405.prototype;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -65,8 +66,8 @@ public class ReminderAdapter extends BaseAdapter {
                 TextView messageTextView = (TextView) group.getChildAt(0);
                 messageTextView.setTextSize(30);
                 toast.show();
-                System.out.println("REMINDER DELETED====================================================");
-                listener.onUpdate(State.UPDATE_REMINDERS);
+                Log.d("ReminderAdapter","REMINDER DELETED====================================================");
+                listener.onUpdate(State.UPDATE_REMINDERS, v);
             }
         });
 

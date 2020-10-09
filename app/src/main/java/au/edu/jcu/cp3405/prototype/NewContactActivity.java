@@ -35,7 +35,7 @@ public class NewContactActivity extends AppCompatActivity {
 
         EditText contactName = findViewById(R.id.contactName);
         EditText contactNumber = findViewById(R.id.contactPhone);
-        final EditText contactEmail = findViewById(R.id.contactEmail);
+        EditText contactEmail = findViewById(R.id.contactEmail);
         keyboard = findViewById(R.id.keyboard);
         setFocus(contactName);
 

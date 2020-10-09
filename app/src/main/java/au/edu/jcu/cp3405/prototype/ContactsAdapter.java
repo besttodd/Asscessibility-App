@@ -4,6 +4,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
 import android.provider.ContactsContract;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,10 +39,18 @@ public class ContactsAdapter extends ArrayAdapter<Contact> {
         }
         TextView contactName = convertView.findViewById(R.id.nameItem);
         TextView contactNumber = convertView.findViewById(R.id.numberItem);
+        Button callButton = convertView.findViewById(R.id.callButton);
         Button deleteButton = convertView.findViewById(R.id.deleteButton);
         assert contact != null;
         contactName.setText(contact.name);
         contactNumber.setText(contact.mobileNum);
+
+        callButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                listener.onUpdate(State.SELECT_CONTACT, v);
+            }
+        });
 
         deleteButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -52,19 +61,20 @@ public class ContactsAdapter extends ArrayAdapter<Contact> {
                     TextView messageTextView = (TextView) group.getChildAt(0);
                     messageTextView.setTextSize(30);
                     toast.show();
-                    System.out.println("CONTACT DELETED====================================================");
-                    listener.onUpdate(State.UPDATE_REMINDERS);
+                    Log.d("ContactsAdapter","CONTACT DELETED");
+                    listener.onUpdate(State.UPDATE_CONTACTS, v);
                 } else {
                     Toast toast = Toast.makeText(context, "Contact not found.", Toast.LENGTH_LONG);
                     ViewGroup group = (ViewGroup) toast.getView();
                     TextView messageTextView = (TextView) group.getChildAt(0);
                     messageTextView.setTextSize(30);
                     toast.show();
-                    System.out.println("CONTACT NOT FOUND====================================================");
+                    Log.d("ContactsAdapter","CONTACT NOT FOUND");
                 }
             }
         });
 
+        convertView.setClickable(true);
         return convertView;
     }
 

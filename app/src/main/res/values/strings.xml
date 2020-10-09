@@ -97,4 +97,7 @@
     <string name="allergies">Allergies</string>
     <string name="current_medications">Current Medications</string>
     <string name="blood_type">Blood Type</string>
+    <string name="edit">Edit</string>
+    <string name="contact_image">contact image</string>
+    <string name="tap_emergency_contact">Tap to add \n Emergency Contact</string>
 </resources>

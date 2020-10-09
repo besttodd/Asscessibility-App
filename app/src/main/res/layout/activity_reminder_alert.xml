@@ -33,7 +33,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_margin="12dp"
-        android:background="@drawable/button_blue"
+        android:background="@drawable/button_aqua"
         android:onClick="onSnoozePressed"
         android:padding="16dp"
         android:text="@string/snooze"

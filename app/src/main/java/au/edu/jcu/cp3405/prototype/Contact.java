@@ -28,4 +28,6 @@ public class Contact {
     public String getName() {
         return name;
     }
+
+    public String getNumber() { return mobileNum; }
 }

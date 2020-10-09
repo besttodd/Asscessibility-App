@@ -25,7 +25,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_margin="15dp"
-        android:background="@drawable/button_blue"
+        android:background="@drawable/button_aqua"
         android:onClick="addNewClicked"
         android:text="Add New Reminder" />
 
@@ -36,7 +36,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_margin="15dp"
-        android:background="@drawable/button_blue"
+        android:background="@drawable/button_aqua"
         android:onClick="viewAlarmsClicked"
         android:text="View Reminders" />
 

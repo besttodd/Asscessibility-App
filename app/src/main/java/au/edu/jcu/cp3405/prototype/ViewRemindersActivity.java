@@ -70,7 +70,7 @@ public class ViewRemindersActivity extends AppCompatActivity implements StateLis
     }
 
     @Override
-    public void onUpdate(State state) {
+    public void onUpdate(State state, View view) {
         if (state == State.UPDATE_REMINDERS) {
             getList();
         }

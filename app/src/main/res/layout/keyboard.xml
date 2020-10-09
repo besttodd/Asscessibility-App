@@ -21,12 +21,12 @@
             <Button
                 android:id="@+id/kbButton2"
                 style="@style/CustomKeyboardColorTheme"
-                android:background="@drawable/button_blue"
+                android:background="@drawable/button_aqua"
                 android:text="@string/abc" />
             <Button
                 android:id="@+id/kbButton3"
                 style="@style/CustomKeyboardColorTheme"
-                android:background="@drawable/button_blue"
+                android:background="@drawable/button_aqua"
                 android:text="@string/def" />
         </LinearLayout>
         <LinearLayout
@@ -36,17 +36,17 @@
             <Button
                 android:id="@+id/kbButton4"
                 style="@style/CustomKeyboardColorTheme"
-                android:background="@drawable/button_blue"
+                android:background="@drawable/button_aqua"
                 android:text="@string/ghi" />
             <Button
                 android:id="@+id/kbButton5"
                 style="@style/CustomKeyboardColorTheme"
-                android:background="@drawable/button_blue"
+                android:background="@drawable/button_aqua"
                 android:text="@string/jkl" />
             <Button
                 android:id="@+id/kbButton6"
                 style="@style/CustomKeyboardColorTheme"
-                android:background="@drawable/button_blue"
+                android:background="@drawable/button_aqua"
                 android:text="@string/mno" />
         </LinearLayout>
         <LinearLayout
@@ -56,17 +56,17 @@
             <Button
                 android:id="@+id/kbButton7"
                 style="@style/CustomKeyboardColorTheme"
-                android:background="@drawable/button_blue"
+                android:background="@drawable/button_aqua"
                 android:text="@string/pqrs" />
             <Button
                 android:id="@+id/kbButton8"
                 style="@style/CustomKeyboardColorTheme"
-                android:background="@drawable/button_blue"
+                android:background="@drawable/button_aqua"
                 android:text="@string/tuv" />
             <Button
                 android:id="@+id/kbButton9"
                 style="@style/CustomKeyboardColorTheme"
-                android:background="@drawable/button_blue"
+                android:background="@drawable/button_aqua"
                 android:text="@string/wxyz" />
         </LinearLayout>
         <LinearLayout
@@ -79,12 +79,12 @@
             android:layout_height="wrap_content"
             android:layout_width="0dp"
                 android:layout_weight="1"
-            android:background="@drawable/button_blue"
+            android:background="@drawable/button_aqua"
             android:text="@string/_1_2_3" />
             <Button
                 android:id="@+id/kbButtonCaps"
                 style="@style/CustomKeyboardColorTheme"
-                android:background="@drawable/button_blue"
+                android:background="@drawable/button_aqua"
                 android:layout_weight="1"
                 android:text="@string/aa" />
             <Button
@@ -93,7 +93,7 @@
                 android:layout_height="wrap_content"
                 android:layout_width="0dp"
                 android:layout_weight="1"
-                android:background="@drawable/button_blue"
+                android:background="@drawable/button_aqua"
                 android:text="@string/space_char" />
             <ImageButton
                 android:id="@+id/kbButtonEnter"

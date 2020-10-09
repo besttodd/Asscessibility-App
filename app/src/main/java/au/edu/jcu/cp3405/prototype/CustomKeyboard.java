@@ -36,6 +36,7 @@ public class CustomKeyboard extends LinearLayout implements View.OnTouchListener
     boolean capsLock = false;
     boolean nums = false;
     private boolean delayTime = true;
+    private boolean nextPressed = false;
     int maxTaps = 3;
     private final Handler handler = new Handler();
     private Runnable runnable;
@@ -60,7 +61,9 @@ public class CustomKeyboard extends LinearLayout implements View.OnTouchListener
     @SuppressLint("ClickableViewAccessibility")
     private void init(Context context) {
         LayoutInflater.from(context).inflate(R.layout.keyboard, this, true);
+        Log.d("Keyboard", "init()=====================================================");
 
+        nextPressed = false;
         soundManager = (SoundManager) context.getApplicationContext();
 
         mButtonDelete = findViewById(R.id.kbButtonDelete);
@@ -122,6 +125,7 @@ public class CustomKeyboard extends LinearLayout implements View.OnTouchListener
                     //Todo: if there is a next editview set focus else save/continue/confirm
                     //hide keyboard
                     ((View) view.getParent().getParent().getParent()).setVisibility(View.GONE);
+                    nextPressed = true;
                     soundManager.playSound(SoundManager.CONFIRM);
                     }
                     break;
@@ -220,7 +224,7 @@ public class CustomKeyboard extends LinearLayout implements View.OnTouchListener
             mButtonNums.setText(getResources().getString(R.string.ABC));
             mButtonEnter.setBackground(getResources().getDrawable(R.drawable.button_red));
             mButtonEnter.setImageResource(android.R.drawable.ic_input_delete);
-            mButtonDelete.setBackground(getResources().getDrawable(R.drawable.button_blue));
+            mButtonDelete.setBackground(getResources().getDrawable(R.drawable.button_aqua));
             mButtonDelete.setText("1");
         }else {
             mButton2.setText(getResources().getString(R.string.abc));
@@ -266,5 +270,13 @@ public class CustomKeyboard extends LinearLayout implements View.OnTouchListener
     // a reference to the current EditText's InputConnection
     public void setInputConnection(InputConnection ic) {
         this.inputConnection = ic;
+    }
+
+    public void setPressed(boolean pressed) {
+        nextPressed = pressed;
+    }
+
+    public boolean getPressed() {
+        return nextPressed;
     }
 }

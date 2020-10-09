@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/BGcolor"
@@ -32,13 +31,14 @@
             android:text="@string/current_medical_conditions"
             android:textSize="26sp" />
 
-        <EditText
+        <TextView
             android:id="@+id/conditions"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/edittext_style"
-            android:ems="26"
-            android:focusableInTouchMode="false"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:ems="15"
             android:textSize="26sp" />
 
         <TextView
@@ -50,14 +50,14 @@
             android:text="@string/allergies"
             android:textSize="26sp" />
 
-        <EditText
+        <TextView
             android:id="@+id/allergies"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/edittext_style"
-            android:ems="26"
-            android:focusableInTouchMode="false"
-            android:importantForAutofill="no"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:ems="20"
             android:textSize="26sp" />
 
         <TextView
@@ -69,14 +69,14 @@
             android:text="@string/current_medications"
             android:textSize="26sp" />
 
-        <EditText
+        <TextView
             android:id="@+id/medications"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/edittext_style"
-            android:ems="26"
-            android:focusableInTouchMode="false"
-            android:importantForAutofill="no"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:ems="20"
             android:textSize="26sp" />
 
         <TextView
@@ -88,15 +88,15 @@
             android:text="@string/blood_type"
             android:textSize="26sp" />
 
-        <EditText
+        <TextView
             android:id="@+id/bloodType"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
             android:background="@drawable/edittext_style"
-            android:ems="26"
-            android:focusableInTouchMode="false"
-            android:importantForAutofill="no"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:ems="20"
             android:textSize="26sp" />
     </LinearLayout>
 
@@ -104,9 +104,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="16dp"
-        android:background="@color/blue"
+        android:layout_marginTop="12dp"
+        android:layout_marginBottom="12dp"
         android:gravity="center"
         android:orientation="horizontal"
         android:paddingTop="6dp"
@@ -117,7 +116,11 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:layout_marginStart="2dp"
+            android:layout_marginEnd="4dp"
+            android:background="@drawable/button_blue"
+            android:onClick="callClicked">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -137,7 +140,10 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:layout_marginStart="2dp"
+            android:layout_marginEnd="4dp"
+            android:background="@drawable/button_blue">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -153,12 +159,25 @@
         </LinearLayout>
     </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <Button
+            style="@style/ColorTheme"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/button_red"
+            android:onClick="onBackPressed"
+            android:text="@string/back" />
     <Button
         style="@style/ColorTheme"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:background="@drawable/button_blue"
+        android:layout_weight="1"
+        android:background="@drawable/button_aqua"
         android:onClick="editEmergencyContact"
-        android:text="Edit" />
+        android:text="@string/edit" />
+    </LinearLayout>
 </LinearLayout>

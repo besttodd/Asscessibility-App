@@ -65,6 +65,7 @@ public class MainActivity extends AppCompatActivity {
         emergencyConfirm.setVisibility(View.INVISIBLE);
         greyScreen.setVisibility(View.INVISIBLE);
         enableDisableView(scroller, true);
+        //Open medical info for additional help
         emiClicked(view);
     }
 

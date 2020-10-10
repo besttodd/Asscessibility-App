@@ -33,14 +33,14 @@ public class ViewContactsActivity extends AppCompatActivity implements StateList
     }
 
     @Override
-    public void onUpdate(State state, View view) {
+    public void onUpdate(State state, Object view) {
         switch (state) {
             case UPDATE_CONTACTS:
                 adapter.notifyDataSetChanged();
                 getAllContacts();
                 break;
             case SELECT_CONTACT:
-                listItemClicked(view);
+                listItemClicked((View) view);
                 break;
         }
     }

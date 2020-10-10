@@ -39,13 +39,13 @@ public class ContactsAdapter extends ArrayAdapter<Contact> {
         }
         TextView contactName = convertView.findViewById(R.id.nameItem);
         TextView contactNumber = convertView.findViewById(R.id.numberItem);
-        Button callButton = convertView.findViewById(R.id.callButton);
+        Button selectButton = convertView.findViewById(R.id.callButton);
         Button deleteButton = convertView.findViewById(R.id.deleteButton);
         assert contact != null;
         contactName.setText(contact.name);
         contactNumber.setText(contact.mobileNum);
 
-        callButton.setOnClickListener(new View.OnClickListener() {
+        selectButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 listener.onUpdate(State.SELECT_CONTACT, v);

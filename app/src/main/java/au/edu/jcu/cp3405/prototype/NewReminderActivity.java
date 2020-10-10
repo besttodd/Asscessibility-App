@@ -286,8 +286,7 @@ public class NewReminderActivity extends AppCompatActivity {
 
     public void setFocus(EditText view) {
         view.setBackground(getResources().getDrawable(R.drawable.edittext_focus_style));
-        view.setText("");
-        if (previousField != null) { previousField.setBackground(getResources().getDrawable(R.drawable.edittext_style)); }
+        if (previousField != null && previousField != view) { previousField.setBackground(getResources().getDrawable(R.drawable.edittext_style)); }
         previousField = view;
     }
 

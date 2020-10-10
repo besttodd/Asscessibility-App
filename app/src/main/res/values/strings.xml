@@ -99,5 +99,10 @@
     <string name="blood_type">Blood Type</string>
     <string name="edit">Edit</string>
     <string name="contact_image">contact image</string>
-    <string name="tap_emergency_contact">Tap to add \n Emergency Contact</string>
+    <string name="tap_emergency_contact">Tap to add \n Emergency \n Contact</string>
+    <string name="picture_of_contact">picture of emergency contact</string>
+    <string name="image_of_a_phone_calling">Image of a phone calling</string>
+    <string name="calling_000">Calling 000</string>
+    <string name="confirm">Confirm</string>
+    <string name="call_n000">Call\n000</string>
 </resources>

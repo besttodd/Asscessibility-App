@@ -18,15 +18,10 @@
             android:orientation="vertical"
             tools:context=".MainActivity">
 
-            <Button
-                style="@style/ColorTheme"
+            <!--Place holder-->
+            <TextView
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:background="@drawable/button_red"
-                android:onClick="emergencyClicked"
-                android:padding="22dp"
-                android:textSize="32sp" />
+                android:layout_height="92dp" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -219,7 +214,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="@color/colorOffRed"
+            android:background="@drawable/button_red"
             android:onClick="emergencyClicked"
             android:orientation="horizontal"
             android:padding="4dp">
@@ -235,7 +230,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="4dp"
-                android:text="Call\n000"
+                android:text="@string/call_n000"
                 android:textSize="32sp"
                 android:textStyle="bold" />
         </LinearLayout>
@@ -248,7 +243,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="@color/blue"
+                android:background="@drawable/button_blue"
                 android:gravity="center"
                 android:text="EMI"
                 android:textColor="@color/white"
@@ -258,7 +253,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="@color/green"
+                android:background="@drawable/button_green"
                 android:gravity="center"
                 android:text="Help"
                 android:textColor="@color/white"
@@ -289,13 +284,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:src="@drawable/phone_calling" />
+            android:src="@drawable/phone_calling"
+            android:contentDescription="@string/image_of_a_phone_calling" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginBottom="6dp"
-            android:text="Calling 000"
+            android:text="@string/calling_000"
             android:textSize="32sp"
             android:textStyle="bold" />
 
@@ -308,7 +304,7 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/button_red"
                 android:padding="4dp"
-                android:text="Cancel"
+                android:text="@string/cancel"
                 android:textColor="@color/white"
                 android:textSize="28sp"
                 android:onClick="cancelEmergency"/>
@@ -319,7 +315,7 @@
                 android:layout_marginStart="8dp"
                 android:background="@drawable/button_green"
                 android:padding="4dp"
-                android:text="Confirm"
+                android:text="@string/confirm"
                 android:textColor="@color/white"
                 android:textSize="28sp" />
         </LinearLayout>

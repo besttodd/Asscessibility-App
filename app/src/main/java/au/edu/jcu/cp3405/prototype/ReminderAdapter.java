@@ -14,12 +14,13 @@ import java.util.List;
 
 public class ReminderAdapter extends BaseAdapter {
     private Context context;
-    StateListener listener;
+    private StateListener listener;
     private List<Reminder> reminders;
 
     ReminderAdapter(Context context, List<Reminder> reminders) {
         this.context = context;
         this.reminders = reminders;
+        listener = (StateListener) context;
     }
 
     public int getCount() {
@@ -34,15 +35,16 @@ public class ReminderAdapter extends BaseAdapter {
         return 0;
     }
 
-    public View getView(int position, View child, ViewGroup parent) {
+    public View getView(final int position, View child, ViewGroup parent) {
         Holder holder;
         LayoutInflater layoutInflater;
-        final Button deleteButton = child.findViewById(R.id.deleteButton);
+        final Button deleteButton;
 
         if (child == null) {
             layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             assert layoutInflater != null;
             child = layoutInflater.inflate(R.layout.reminder_item, parent, false);
+            deleteButton = child.findViewById(R.id.deleteButton);
 
             holder = new Holder();
             holder.textviewlabel = child.findViewById(R.id.textViewLabel);
@@ -51,6 +53,7 @@ public class ReminderAdapter extends BaseAdapter {
             child.setTag(holder);
         } else {
             holder = (Holder) child.getTag();
+            deleteButton = child.findViewById(R.id.deleteButton);
         }
 
         holder.textviewlabel.setText(reminders.get(position).getLabel());
@@ -59,22 +62,18 @@ public class ReminderAdapter extends BaseAdapter {
 
         deleteButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                deleteReminder(v);
+            public void onClick(final View v) {
                 Toast toast = Toast.makeText(context, "Contact deleted.", Toast.LENGTH_LONG);
                 ViewGroup group = (ViewGroup) toast.getView();
                 TextView messageTextView = (TextView) group.getChildAt(0);
                 messageTextView.setTextSize(30);
                 toast.show();
                 Log.d("ReminderAdapter","REMINDER DELETED====================================================");
-                listener.onUpdate(State.UPDATE_REMINDERS, v);
+                listener.onUpdate(State.UPDATE_REMINDERS, position);
             }
         });
 
         return child;
-    }
-
-    private void deleteReminder(View view) {
     }
 
     private String getTime(Reminder reminder) {

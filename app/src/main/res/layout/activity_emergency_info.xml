@@ -115,6 +115,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:paddingTop="4dp"
+            android:paddingBottom="8dp"
             android:gravity="center"
             android:orientation="vertical"
             android:layout_marginStart="2dp"
@@ -123,22 +125,26 @@
             android:onClick="callClicked">
 
             <TextView
+                android:id="@+id/eContactName1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Bob"
                 android:textColor="@color/white"
                 android:textSize="24sp" />
 
             <ImageView
+                android:id="@+id/eContactImage1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/phone" />
+                android:src="@drawable/phone"
+                android:contentDescription="@string/picture_of_contact" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:paddingTop="4dp"
+            android:paddingBottom="8dp"
             android:gravity="center"
             android:orientation="vertical"
             android:layout_marginStart="2dp"
@@ -146,16 +152,18 @@
             android:background="@drawable/button_blue">
 
             <TextView
+                android:id="@+id/eContactName2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Jane"
                 android:textColor="@color/white"
                 android:textSize="24sp" />
 
             <ImageView
+                android:id="@+id/eContactImage2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/phone" />
+                android:src="@drawable/phone"
+                android:contentDescription="@string/picture_of_contact" />
         </LinearLayout>
     </LinearLayout>
 

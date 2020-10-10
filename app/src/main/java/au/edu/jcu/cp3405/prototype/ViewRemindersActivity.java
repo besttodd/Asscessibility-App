@@ -26,6 +26,7 @@ public class ViewRemindersActivity extends AppCompatActivity implements StateLis
     SoundManager soundManager;
     SharedPreferences sharedpreferences;
     List<Reminder> reminderList = new ArrayList<>();
+    ReminderAdapter reminderAdapter = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,9 +50,9 @@ public class ViewRemindersActivity extends AppCompatActivity implements StateLis
                 }
             }
 
-            final ReminderAdapter reminderAdapter = new ReminderAdapter(this, reminderList);
+            reminderAdapter = new ReminderAdapter(this, reminderList);
             reminderView.setAdapter(reminderAdapter);
-            reminderView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            /*reminderView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, final View view, final int position, long id) {
                     view.animate().setDuration(2000).alpha(0)
@@ -65,14 +66,16 @@ public class ViewRemindersActivity extends AppCompatActivity implements StateLis
                             });
                 }
 
-            });
+            });*/
         }
     }
 
     @Override
-    public void onUpdate(State state, View view) {
+    public void onUpdate(State state, Object position) {
         if (state == State.UPDATE_REMINDERS) {
+            deleteReminder((int) position);
             getList();
+            reminderAdapter.notifyDataSetChanged();
         }
     }
 

@@ -43,7 +43,10 @@ public class ReminderAlertActivity extends AppCompatActivity {
         soundManager = (SoundManager) getApplicationContext();
 
         sharedpreferences = this.getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
-        int id = Integer.parseInt(Objects.requireNonNull(sharedpreferences.getString("AlarmId", null)));
+        int id = 0;
+        if (sharedpreferences.getString("AlarmId", null) != null) {
+            id = Integer.parseInt(Objects.requireNonNull(sharedpreferences.getString("AlarmId", null)));
+        }
         sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
         reminderList = getList();
 

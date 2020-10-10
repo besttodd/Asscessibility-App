@@ -23,6 +23,7 @@ public class NewEmergencyInfoActivity extends AppCompatActivity {
     Context context;
     SoundManager soundManager;
     CustomKeyboard keyboard;
+    SharedPreferences sharedpreferences;
     EditText previousField;
     EditText conditions;
     EditText allergies;
@@ -37,6 +38,7 @@ public class NewEmergencyInfoActivity extends AppCompatActivity {
         setContentView(R.layout.activity_new_emergency_info);
         context = this;
         soundManager = (SoundManager) getApplicationContext();
+        sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
 
         conditions = findViewById(R.id.conditions);
         allergies = findViewById(R.id.allergies);
@@ -44,6 +46,7 @@ public class NewEmergencyInfoActivity extends AppCompatActivity {
         bloodType = findViewById(R.id.bloodType);
         scrollView = findViewById(R.id.scroller);
         keyboard = findViewById(R.id.keyboard);
+        //getSavedInfo();
         setFocus(conditions);
 
         //Make custom
@@ -56,7 +59,7 @@ public class NewEmergencyInfoActivity extends AppCompatActivity {
         });
         allergies.setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) {
-                keyboard.setNumKeyboard();
+                keyboard.setLettersKeyboard();
                 setFocus((EditText) v);
                 showCustomKeyboard((EditText) v);
             }
@@ -86,22 +89,49 @@ public class NewEmergencyInfoActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-
+        String keyName = "eContact1Name";
+        String keyNumber = "eContact1Number";
         if (requestCode == REQUEST_CODE) {
             if(resultCode == RESULT_OK){
                 String newName = data.getStringExtra("Name");
                 String newNumber = data.getStringExtra("Number");
-                //TODO save details to sharedpreferences
                 eContactClicked.setText(newName);
+                if (eContactClicked == findViewById(R.id.eContact2)) {
+                    keyName = "eContact2Name";
+                    keyNumber = "eContact2Number";
+                }
+                SharedPreferences.Editor editor = sharedpreferences.edit();
+                editor.putString(keyName, newName);
+                editor.putString(keyNumber, newNumber);
+                //put Image path in shared preferences
+                editor.apply();
             }
             if (resultCode == RESULT_CANCELED) {
-                //Write your code if there's no result
+                //Code for no result
             }
         }
     }
 
+    //Populate fields with existing data
+    /*private void getSavedInfo() {
+        TextView conditions = findViewById(R.id.conditions);
+        TextView allergies = findViewById(R.id.allergies);
+        TextView medications = findViewById(R.id.medications);
+        TextView bloodType = findViewById(R.id.bloodType);
+        TextView eContact1Name = findViewById(R.id.eContact1);
+        TextView eContact2Name = findViewById(R.id.eContact2);
+
+        conditions.setText(sharedpreferences.getString("conditions", null));
+        allergies.setText(sharedpreferences.getString("allergies", null));
+        medications.setText(sharedpreferences.getString("medications", null));
+        bloodType.setText(sharedpreferences.getString("blood type", null));
+        eContact1Name.setText(sharedpreferences.getString("eContact1Name", null));
+        eContact2Name.setText(sharedpreferences.getString("eContact2Name", null));
+    }*/
+
     public void setFocus(EditText view) {
         view.setBackground(getResources().getDrawable(R.drawable.edittext_focus_style));
+        //view.setText("");
         if (previousField != null) { previousField.setBackground(getResources().getDrawable(R.drawable.edittext_style)); }
         previousField = view;
     }
@@ -121,6 +151,7 @@ public class NewEmergencyInfoActivity extends AppCompatActivity {
     }
 
     public void saveClicked(View view) {
+        //TODO check input
         soundManager.playSound(SoundManager.CONFIRM);
         SharedPreferences sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedpreferences.edit();

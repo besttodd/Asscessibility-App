@@ -10,7 +10,7 @@
     <string name="view_all">View All</string>
     <string name="back_arrow">Back arrow</string>
     <string name="contacts">CONTACTS</string>
-    <string name="back">Back</string>
+    <string name="back">BACK</string>
     <string name="application_list">Application List</string>
     <string name="calendar">Calendar</string>
     <string name="call">Call</string>
@@ -105,4 +105,9 @@
     <string name="calling_000">Calling 000</string>
     <string name="confirm">Confirm</string>
     <string name="call_n000">Call\n000</string>
+    <string name="new_reminder">Add New Reminder</string>
+    <string name="view_reminders">View Reminders</string>
+    <string name="time_date_placeholder">TIME\nDATE</string>
+    <string name="select">Select</string>
+    <string name="tick_button">Tick button</string>
 </resources>

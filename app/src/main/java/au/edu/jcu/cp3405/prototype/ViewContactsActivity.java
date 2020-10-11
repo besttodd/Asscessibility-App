@@ -9,12 +9,11 @@ import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.util.Log;
 import android.view.View;
-import android.view.ViewParent;
-import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class ViewContactsActivity extends AppCompatActivity implements StateListener {
     SoundManager soundManager;
@@ -25,7 +24,7 @@ public class ViewContactsActivity extends AppCompatActivity implements StateList
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_list_contacts);
+        setContentView(R.layout.activity_view_contacts);
 
         soundManager = (SoundManager) getApplicationContext();
         listView = findViewById(R.id.contactListView);
@@ -71,6 +70,7 @@ public class ViewContactsActivity extends AppCompatActivity implements StateList
                     pCur.close();
                 }
                 arrayOfContacts.add(contact);
+                Collections.sort(arrayOfContacts, new SortBasedOnName());
             }
             adapter = new ContactsAdapter(this, arrayOfContacts);
             listView.setAdapter(adapter);

@@ -16,7 +16,7 @@
         android:layout_weight="1"
         android:textSize="32sp"
         android:textColor="#FFFFFF"
-        android:text="Reminder" />
+        android:text="@string/reminders" />
 
     <TextView
         android:id="@+id/textViewTime"
@@ -25,12 +25,13 @@
         android:layout_weight="1"
         android:textSize="32sp"
         android:textColor="#FFFFFF"
-        android:text="10:00am" />
+        android:text="@string/time_divider" />
         <Button
             android:id="@+id/deleteButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_marginTop="0dp"
+            android:layout_marginBottom="6dp"
             android:background="@drawable/button_delete" />
     </LinearLayout>
 
@@ -41,5 +42,5 @@
         android:layout_gravity="center"
         android:textSize="32sp"
         android:textColor="#FFFFFF"
-        android:text="Days" />
+        android:text="@string/on_these_days" />
 </LinearLayout>

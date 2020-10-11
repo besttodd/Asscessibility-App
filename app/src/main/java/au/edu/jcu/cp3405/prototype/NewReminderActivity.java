@@ -15,13 +15,14 @@ import android.text.method.DigitsKeyListener;
 import android.text.method.KeyListener;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputConnection;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
@@ -91,6 +92,7 @@ public class NewReminderActivity extends AppCompatActivity {
         minText.setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) {
                 keyboard.setNumKeyboard();
+                minText.setText("");
                 showCustomKeyboard((EditText) v);
                 setFocus((EditText) v);
             }
@@ -238,7 +240,11 @@ public class NewReminderActivity extends AppCompatActivity {
         //check
         //set("AlarmLabel", reminder.getLabel());
         set("AlarmId", String.valueOf(reminder.getId()));
-        Toast.makeText(this, "Alarm set", Toast.LENGTH_LONG).show();
+        Toast toast = Toast.makeText(this, "Alarm set", Toast.LENGTH_LONG);
+        ViewGroup group = (ViewGroup) toast.getView();
+        TextView messageTextView = (TextView) group.getChildAt(0);
+        messageTextView.setTextSize(30);
+        toast.show();
         Log.d("NewReminder", "ALARM: "+reminder.getId()+" -SET======================================================================");
         onBackPressed();
     }
@@ -272,7 +278,7 @@ public class NewReminderActivity extends AppCompatActivity {
         onBackPressed();
     }
 
-    public void hideDefaultKeyboard(View view) {
+    /*public void hideDefaultKeyboard(View view) {
         // this will give us the view which is currently focus in this layout
         //View view = this.getCurrentFocus();
         // if nothing is currently focus then this will protect the app from crash
@@ -282,7 +288,7 @@ public class NewReminderActivity extends AppCompatActivity {
             assert imm != null;
             imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
         }
-    }
+    }*/
 
     public void setFocus(EditText view) {
         view.setBackground(getResources().getDrawable(R.drawable.edittext_focus_style));

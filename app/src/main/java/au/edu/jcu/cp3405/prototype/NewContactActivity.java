@@ -27,7 +27,7 @@ public class NewContactActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_addcontacts);
+        setContentView(R.layout.activity_new_contacts);
         context = this;
         soundManager = (SoundManager) getApplicationContext();
 

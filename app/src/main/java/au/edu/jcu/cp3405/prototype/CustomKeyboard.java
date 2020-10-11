@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CustomKeyboard extends LinearLayout implements View.OnTouchListener {
-    private static final int MAX_TIME_BETWEEN_TAPS = 1000;
+    private static final int MAX_TIME_BETWEEN_TAPS = 900;
     SoundManager soundManager;
     Button mButton2;
     Button mButton3;
@@ -37,6 +37,7 @@ public class CustomKeyboard extends LinearLayout implements View.OnTouchListener
     boolean nums = false;
     private boolean delayTime = true;
     private boolean nextPressed = false;
+    int previousButton = 0;
     int maxTaps = 3;
     private final Handler handler = new Handler();
     private Runnable runnable;
@@ -97,7 +98,6 @@ public class CustomKeyboard extends LinearLayout implements View.OnTouchListener
 
     @Override
     public boolean onTouch(final View view, MotionEvent event) {
-        //Todo: Check for too many taps
 
         // All communication goes through the InputConnection
         if (inputConnection == null) return false;
@@ -140,7 +140,7 @@ public class CustomKeyboard extends LinearLayout implements View.OnTouchListener
                         toggleCaps();
                         break;
                     }
-                    maxTaps = 2;
+                    maxTaps = 3;
                 case R.id.kbButtonSpace:
                     soundManager.playSound(SoundManager.NEUTRAL);
                     maxTaps = 1;
@@ -149,7 +149,7 @@ public class CustomKeyboard extends LinearLayout implements View.OnTouchListener
                 case R.id.kbButton7:
                 case R.id.kbButton9:
                     soundManager.playSound(SoundManager.NEUTRAL);
-                    if (nums) {maxTaps = 2;} else { maxTaps = 4; }
+                    if (nums) {maxTaps = 1;} else { maxTaps = 4; }
                     //check number of taps
                     return checkNumTaps(view);
                 default:
@@ -163,6 +163,12 @@ public class CustomKeyboard extends LinearLayout implements View.OnTouchListener
     }
 
     private boolean checkNumTaps(final View view) {
+        if (previousButton != view.getId()) {
+            handler.removeCallbacks(runnable);
+            taps.clear();
+            delayTime = true;
+        }
+
         //get system current milliseconds
         long time = System.currentTimeMillis();
         if (delayTime) {
@@ -170,9 +176,10 @@ public class CustomKeyboard extends LinearLayout implements View.OnTouchListener
             handler.postDelayed(runnable = new Runnable() {
                 @Override
                 public void run() {
-                    if (taps.size() == maxTaps) {
+                    if (taps.size() >= maxTaps) {
                         Log.d("Touch Event", "Max Taps===========================================");
                         handler.removeCallbacks(runnable);
+                        getLetter(view, 0);
                     } else {
                         Log.d("Touch Event", taps.size() + " - Taps"+maxTaps);
                         getLetter(view, taps.size());
@@ -183,6 +190,8 @@ public class CustomKeyboard extends LinearLayout implements View.OnTouchListener
             }, MAX_TIME_BETWEEN_TAPS);
         } else {
             taps.add(time);
+            //record button pressed
+            previousButton = view.getId();
         }
         return true;
     }
@@ -192,7 +201,11 @@ public class CustomKeyboard extends LinearLayout implements View.OnTouchListener
         Button pressed = (Button) view;
         String value = (String) pressed.getText();
         input = value.substring(letter, letter + 1);
-        if (capsLock) input = input.toUpperCase();
+        if (capsLock) {
+            input = input.toUpperCase();
+            capsLock = false;
+            toggleCaps();
+        }
         else input = input.toLowerCase();
         if (input.equals("\u2423")) {input = " ";}
         inputConnection.commitText(input, 1);

@@ -6,8 +6,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputConnection;
 import android.widget.EditText;
@@ -49,7 +49,7 @@ public class NewEmergencyInfoActivity extends AppCompatActivity {
         //getSavedInfo();
         setFocus(conditions);
 
-        //Make custom
+        //Setup custom keyboard
         conditions.setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) {
                 keyboard.setLettersKeyboard();
@@ -89,6 +89,7 @@ public class NewEmergencyInfoActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        //Save selected emergency contacts
         String keyName = "eContact1Name";
         String keyNumber = "eContact1Number";
         if (requestCode == REQUEST_CODE) {
@@ -106,9 +107,7 @@ public class NewEmergencyInfoActivity extends AppCompatActivity {
                 //put Image path in shared preferences
                 editor.apply();
             }
-            if (resultCode == RESULT_CANCELED) {
-                //Code for no result
-            }
+            //Code for no result
         }
     }
 
@@ -159,9 +158,13 @@ public class NewEmergencyInfoActivity extends AppCompatActivity {
         editor.putString("allergies", String.valueOf(allergies.getText()));
         editor.putString("medications", String.valueOf(medications.getText()));
         editor.putString("blood type", String.valueOf(bloodType.getText()));
-        //TODO get emergency contact preferences and save to sharedpreferences
         editor.apply();
-        Toast.makeText(this, "Details Saved", Toast.LENGTH_LONG).show();
+        Toast toast = Toast.makeText(this, "Details Saved", Toast.LENGTH_LONG);
+        ViewGroup group = (ViewGroup) toast.getView();
+        TextView messageTextView = (TextView) group.getChildAt(0);
+        messageTextView.setTextSize(30);
+        toast.show();
+        onBackPressed();
     }
 
     public void findContactClicked(View view) {

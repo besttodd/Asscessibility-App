@@ -2,6 +2,7 @@ package au.edu.jcu.cp3405.prototype;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -9,6 +10,7 @@ import android.widget.TextView;
 
 public class PhoneActivity extends AppCompatActivity {
     SoundManager soundManager;
+    boolean existingContact = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,8 +29,8 @@ public class PhoneActivity extends AppCompatActivity {
         String display = textView.getText().toString();
         String numberPressed = button.getText().toString();
         switch (display.length()) {
-            case 5:
-            case 10:
+            case 2:
+            case 7:
                 entering = display + " " + numberPressed;
                 break;
             default:
@@ -46,5 +48,21 @@ public class PhoneActivity extends AppCompatActivity {
             newDisplay = currentDisplay.substring(0, currentDisplay.length() - 1);
         }
         textView.setText(newDisplay);
+    }
+
+    public void callClicked(View view) {
+        soundManager.playSound(SoundManager.CONFIRM);
+        TextView numberView = findViewById(R.id.numberDisplay);
+        String number = numberView.getText().toString();
+        Intent intent = new Intent(this, InCallActivity.class);
+        intent.putExtra("NumberCalled", number);
+        intent.putExtra("ExistingContact", existingContact);
+        startActivity(intent);
+    }
+
+    public void onBackPressed(View view) {
+        soundManager.playSound(SoundManager.CANCEL);
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
     }
 }

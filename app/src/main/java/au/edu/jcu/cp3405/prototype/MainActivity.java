@@ -37,6 +37,12 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void flashlightClicked(View view) {
+        soundManager.playSound(SoundManager.NEUTRAL);
+        Intent intent = new Intent(this, FlashlightActivity.class);
+        startActivity(intent);
+    }
+
     public void clockClicked(View view) {
         soundManager.playSound(SoundManager.NEUTRAL);
         Intent intent = new Intent(this, ClockActivity.class);

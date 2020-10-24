@@ -7,6 +7,14 @@
     android:orientation="vertical"
     tools:context=".ContactsActivity">
 
+    <TextView
+        style="@style/ColorTheme"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/contacts"
+        android:textSize="46sp" />
+
     <Button
         android:id="@+id/addNewContactButton"
         style="@style/ColorTheme"

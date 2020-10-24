@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Objects;
 
 public class ViewContactsActivity extends AppCompatActivity implements StateListener {
     SoundManager soundManager;
@@ -39,7 +40,7 @@ public class ViewContactsActivity extends AppCompatActivity implements StateList
                 getAllContacts();
                 break;
             case SELECT_CONTACT:
-                listItemClicked((View) view);
+                contactSelected((View) view);
                 break;
         }
     }
@@ -92,16 +93,24 @@ public class ViewContactsActivity extends AppCompatActivity implements StateList
         }
     }
 
-    public void listItemClicked(View view) {
+    public void contactSelected(View view) {
         View parent = (View) view.getParent().getParent();
         TextView itemName = (TextView) parent.findViewById(R.id.nameItem);
         TextView itemNumber = (TextView) parent.findViewById(R.id.numberItem);
-        Intent intent = new Intent();
-        intent.putExtra("Name", itemName.getText());
-        intent.putExtra("Number", itemNumber.getText());
-        setResult(RESULT_OK, intent);
-        finish();
-        Log.d("ViewContacts", itemName.getText() + "=================================================");
+        if (getIntent().getExtras() == null) {
+            Intent intent = new Intent(this, ContactViewActivity.class);
+            intent.putExtra("Name", itemName.getText());
+            intent.putExtra("Number", itemNumber.getText());
+            startActivity(intent);
+        } else {
+            //String requestingIntent = getIntent().getExtras().getString("RequestingIntent");
+            Intent intent = new Intent();
+            intent.putExtra("Name", itemName.getText());
+            intent.putExtra("Number", itemNumber.getText());
+            setResult(RESULT_OK, intent);
+            finish();
+            Log.d("ViewContacts", itemName.getText() + "=================================================");
+        }
     }
 
     public void onBackPressed(View view) {

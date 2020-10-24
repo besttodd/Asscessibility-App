@@ -171,6 +171,7 @@ public class NewEmergencyInfoActivity extends AppCompatActivity {
         soundManager.playSound(SoundManager.NEUTRAL);
         Intent intent = new Intent(this, ViewContactsActivity.class);
         eContactClicked = (TextView) view;
+        intent.putExtra("RequestingActivity", "EmergencyContact");
         startActivityForResult(intent, REQUEST_CODE);
     }
 }

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".FlashlightActivity"
+    android:background="@color/BGcolor">
+
+    <TextView
+        android:id="@+id/titleTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Flashlight"
+        android:textSize="46sp"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/flashlightImg"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <ImageView
+        android:id="@+id/flashlightImg"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:src="@drawable/torch"
+        app:layout_constraintTop_toBottomOf="@id/titleTextView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <Button
+        android:id="@+id/onButton"
+        style="@style/ColorTheme"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/button_aqua"
+        android:text="@string/on"
+        android:onClick="flashlightOn"
+        app:layout_constraintTop_toBottomOf="@id/flashlightImg"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/offButton"
+        app:layout_constraintBottom_toTopOf="@+id/backButton" />
+
+    <Button
+        android:id="@+id/offButton"
+        style="@style/ColorTheme"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/button_aqua"
+        android:text="@string/off"
+        android:onClick="flashLightOff"
+        app:layout_constraintTop_toBottomOf="@id/flashlightImg"
+        app:layout_constraintBottom_toTopOf="@+id/backButton"
+        app:layout_constraintStart_toEndOf="@id/onButton"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <Button
+        android:id="@+id/backButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="end"
+        android:background="@drawable/button_back"
+        android:onClick="onBackPressed"
+        android:text="@string/back"
+        android:textColor="#FFFFFF"
+        android:textSize="32sp"
+        app:layout_constraintTop_toBottomOf="@id/onButton"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -50,6 +50,12 @@ public class CalendarActivity extends AppCompatActivity {
         if (!hasPermissionContacts) {
             ActivityCompat.requestPermissions(CalendarActivity.this,
                     new String[]{Manifest.permission.READ_CALENDAR, Manifest.permission.WRITE_CALENDAR}, REQUEST_ACCESS_CALENDAR);
+        } else {
+            try {
+                readEvents(context);
+            } catch (java.text.ParseException e) {
+                e.printStackTrace();
+            }
         }
 
         CalendarView mCalendarView = findViewById(R.id.calendarView);
@@ -69,11 +75,6 @@ public class CalendarActivity extends AppCompatActivity {
                 }
             }
         });
-        try {
-            readEvents(context);
-        } catch (java.text.ParseException e) {
-            e.printStackTrace();
-        }
     }
 
     @Override

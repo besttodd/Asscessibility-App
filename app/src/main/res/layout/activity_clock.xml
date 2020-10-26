@@ -11,10 +11,9 @@
         android:id="@+id/currentTimeDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        style="@style/ColorTheme"
+        style="@style/ColorThemeTitle"
         android:layout_gravity="center"
         android:gravity="center"
-        android:textSize="36sp"
         android:text="@string/time_date_placeholder" />
 
     <Button

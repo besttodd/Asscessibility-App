@@ -62,7 +62,6 @@ public class CustomKeyboard extends LinearLayout implements View.OnTouchListener
     @SuppressLint("ClickableViewAccessibility")
     private void init(Context context) {
         LayoutInflater.from(context).inflate(R.layout.keyboard, this, true);
-        Log.d("Keyboard", "init()=====================================================");
 
         nextPressed = false;
         soundManager = (SoundManager) context.getApplicationContext();
@@ -105,6 +104,7 @@ public class CustomKeyboard extends LinearLayout implements View.OnTouchListener
         if (event.getAction() == MotionEvent.ACTION_UP) {
             switch (view.getId()) {
                 case R.id.kbButtonDelete:
+                    //changes to '1' on number keyboard
                     if (nums) {
                         soundManager.playSound(SoundManager.NEUTRAL);
                         maxTaps = 1;
@@ -112,21 +112,23 @@ public class CustomKeyboard extends LinearLayout implements View.OnTouchListener
                         return checkNumTaps(view);
                     }
                     else {
-                        deleteButton();
                         soundManager.playSound(SoundManager.CANCEL);
+                        deleteButton();
                     }
                     break;
                 case R.id.kbButtonEnter:
+                    //changes to 'delete button' on number keyboard
                     if (nums) {
                         deleteButton();
                         soundManager.playSound(SoundManager.CANCEL);
                     }
                     else {
-                    //Todo: if there is a next editview set focus else save/continue/confirm
-                    //hide keyboard
-                    ((View) view.getParent().getParent().getParent()).setVisibility(View.GONE);
-                    nextPressed = true;
-                    soundManager.playSound(SoundManager.CONFIRM);
+                        //Todo: if there is a next editview set focus else save/continue/confirm
+                        //hide keyboard
+                        ((View) view.getParent().getParent().getParent()).setVisibility(View.GONE);
+                        //Todo: scroll view back to normal
+                        nextPressed = true;
+                        soundManager.playSound(SoundManager.CONFIRM);
                     }
                     break;
                 case R.id.kbButtonNums:
@@ -135,12 +137,17 @@ public class CustomKeyboard extends LinearLayout implements View.OnTouchListener
                     toggleNums();
                     break;
                 case R.id.kbButtonCaps:
-                    if (!nums) {
+                    soundManager.playSound(SoundManager.NEUTRAL);
+                    //changes to 'symbols button' on number keyboard
+                    if (nums) {
+                        maxTaps = 3;
+                        Log.d("Symbols", "BttnID:" + view.getId());
+                        return checkNumTaps(view);
+                    } else {
                         capsLock = !capsLock;
                         toggleCaps();
                         break;
                     }
-                    maxTaps = 3;
                 case R.id.kbButtonSpace:
                     soundManager.playSound(SoundManager.NEUTRAL);
                     maxTaps = 1;
@@ -163,35 +170,41 @@ public class CustomKeyboard extends LinearLayout implements View.OnTouchListener
     }
 
     private boolean checkNumTaps(final View view) {
-        if (previousButton != view.getId()) {
+        /*if (previousButton != view.getId()) {
+            getLetter(view, 0);
             handler.removeCallbacks(runnable);
             taps.clear();
             delayTime = true;
-        }
+        }*/
 
-        //get system current milliseconds
-        long time = System.currentTimeMillis();
-        if (delayTime) {
-            delayTime = false;
-            handler.postDelayed(runnable = new Runnable() {
-                @Override
-                public void run() {
-                    if (taps.size() >= maxTaps) {
-                        Log.d("Touch Event", "Max Taps===========================================");
-                        handler.removeCallbacks(runnable);
-                        getLetter(view, 0);
-                    } else {
-                        Log.d("Touch Event", taps.size() + " - Taps"+maxTaps);
-                        getLetter(view, taps.size());
-                    }
-                    taps.clear();
-                    delayTime = true;
-                }
-            }, MAX_TIME_BETWEEN_TAPS);
+        if (nums && (view != mButtonCaps)) {
+            getLetter(view, 0);
         } else {
-            taps.add(time);
-            //record button pressed
-            previousButton = view.getId();
+            //get system current milliseconds
+            long time = System.currentTimeMillis();
+            if (delayTime) {
+                delayTime = false;
+                handler.postDelayed(runnable = new Runnable() {
+                    @Override
+                    public void run() {
+                        if (taps.size() >= maxTaps) {
+                            Log.d("Touch Event", "Max Taps===");
+                            handler.removeCallbacks(runnable);
+                            getLetter(view, 0);
+                        } else {
+                            Log.d("Touch Event", taps.size() + " - Taps" + maxTaps);
+                            getLetter(view, taps.size());
+                        }
+                        taps.clear();
+                        delayTime = true;
+                        previousButton = view.getId();
+                    }
+                }, MAX_TIME_BETWEEN_TAPS);
+            } else {
+                taps.add(time);
+                //record button pressed
+                previousButton = view.getId();
+            }
         }
         return true;
     }

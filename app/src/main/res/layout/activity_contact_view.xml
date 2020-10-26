@@ -24,7 +24,7 @@
 
         <TextView
             android:id="@+id/contactName"
-            style="@style/ColorTheme"
+            style="@style/ColorThemeTitle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -44,14 +44,16 @@
             style="@style/ColorTheme"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/number" />
+            android:text="@string/number"
+            android:textColor="@color/blue" />
 
         <TextView
             android:id="@+id/contactNumber"
             style="@style/ColorTheme"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="0000000000" />
+            android:text="0000000000"
+            android:textColor="@color/blue" />
     </LinearLayout>
 
     <LinearLayout
@@ -65,14 +67,16 @@
             style="@style/ColorTheme"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/email" />
+            android:text="@string/email"
+            android:textColor="@color/blue" />
 
         <TextView
             android:id="@+id/contactEmail"
             style="@style/ColorTheme"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="none@none.com" />
+            android:text="none@none.com"
+            android:textColor="@color/blue" />
     </LinearLayout>
 
     <LinearLayout

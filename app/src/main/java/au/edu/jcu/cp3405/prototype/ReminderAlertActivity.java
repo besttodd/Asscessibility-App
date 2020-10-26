@@ -13,6 +13,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -51,7 +52,7 @@ public class ReminderAlertActivity extends AppCompatActivity {
         reminderList = getList();
 
         reminder = reminderList.get(id);
-        String message = "Remember: " + reminder.getLabel();
+        String message = "Remember\n" + reminder.getLabel();
 
         TextView reminderLabel = findViewById(R.id.reminderAlertView);
         reminderLabel.setText(message);
@@ -90,15 +91,19 @@ public class ReminderAlertActivity extends AppCompatActivity {
         Intent myIntent = new Intent(getApplicationContext(), MyBroadcastReceiver.class);
         myIntent.setAction(MyBroadcastReceiver.ACTION_ALARM_RECEIVER);
         PendingIntent myPendingIntent = PendingIntent.getBroadcast(this.getApplicationContext(), SNOOZE_REMINDER_ID, myIntent, PendingIntent.FLAG_UPDATE_CURRENT);
-        AlarmManager myAlarmManager = (AlarmManager)getSystemService(ALARM_SERVICE);
+        AlarmManager myAlarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
         assert myAlarmManager != null;
-        myAlarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calSet.getTimeInMillis(), 24*60*60*1000, myPendingIntent);
+        myAlarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calSet.getTimeInMillis(), 24 * 60 * 60 * 1000, myPendingIntent);
         //check
         SharedPreferences.Editor editor = sharedpreferences.edit();
         editor.putString("AlarmId", String.valueOf(reminder.getId()));
         editor.apply();
-        Toast.makeText(this, "Alarm set", Toast.LENGTH_LONG).show();
-        Log.d("NewReminder", "ALARM: "+reminder.getId()+" -SET======================================================================");
+        Toast toast = Toast.makeText(this, "Reminder Snoozed", Toast.LENGTH_LONG);
+        ViewGroup group = (ViewGroup) toast.getView();
+        TextView messageTextView = (TextView) group.getChildAt(0);
+        messageTextView.setTextSize(30);
+        toast.show();
+        Log.d("NewReminder", "ALARM: " + reminder.getId() + " -SET===");
         onBackPressed();
     }
 }

@@ -13,7 +13,6 @@ import android.media.RingtoneManager;
 import android.os.Build;
 import android.os.Vibrator;
 import android.util.Log;
-import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
 
@@ -33,10 +32,10 @@ public class MyBroadcastReceiver extends BroadcastReceiver {
         context.startActivity(intent);
 
         //Light Up phone
-        Toast.makeText(context, "Don't FORGET", Toast.LENGTH_LONG).show();
+        //Toast.makeText(context, "Don't FORGET", Toast.LENGTH_LONG).show();
         @SuppressLint("SimpleDateFormat") DateFormat df = new SimpleDateFormat("EEE, d MMM yyyy, HH:mm");
         String date = df.format(Calendar.getInstance().getTime());
-        Log.d("Receiver", "ALERT====================================================================" + date);
+        Log.d("Receiver", "ALERT===" + date);
 
         //Play sound
         AudioManager audio = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);

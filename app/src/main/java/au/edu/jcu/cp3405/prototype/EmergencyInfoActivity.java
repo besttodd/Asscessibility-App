@@ -25,6 +25,12 @@ public class EmergencyInfoActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        getSavedInfo();
+    }
+
     private void getSavedInfo() {
         TextView conditions = findViewById(R.id.conditions);
         TextView allergies = findViewById(R.id.allergies);

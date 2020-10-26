@@ -22,10 +22,11 @@
 
         <EditText
             android:id="@+id/alarmLabel"
-            style="@style/ColorTheme"
+            style="@style/ColorThemeInput"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:background="@drawable/edittext_style"
             android:ems="10"
             android:focusableInTouchMode="false"
             android:inputType="textPersonName"
@@ -64,9 +65,10 @@
 
             <EditText
                 android:id="@+id/minutesEditText"
-                style="@style/ColorTheme"
+                style="@style/ColorThemeInput"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:background="@drawable/edittext_style"
                 android:ems="2"
                 android:inputType="number"
                 android:maxLength="2"

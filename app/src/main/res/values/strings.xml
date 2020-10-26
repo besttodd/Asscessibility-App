@@ -10,7 +10,7 @@
     <string name="add_new">Add New</string>
     <string name="view_all">View All</string>
     <string name="back_arrow">Back arrow</string>
-    <string name="contacts">CONTACTS</string>
+    <string name="contacts">Contacts</string>
     <string name="back">BACK</string>
     <string name="application_list">Application List</string>
     <string name="calendar">Calendar</string>
@@ -120,4 +120,14 @@
     <string name="flashlight">Flashlight</string>
     <string name="on">On</string>
     <string name="off">Off</string>
+    <string name="delete_contact">Delete contact?</string>
+    <string name="image_of_a_red_cross">image of a red cross</string>
+    <string name="reminder">REMINDER</string>
+    <string name="address">Address:</string>
+    <string name="title">Title</string>
+    <string name="emi">EMI</string>
+    <string name="tutorial">Tutorial</string>
+    <string name="date">Date</string>
+    <string name="event_1">Event 1</string>
+    <string name="_10_00am">10:00am</string>
 </resources>

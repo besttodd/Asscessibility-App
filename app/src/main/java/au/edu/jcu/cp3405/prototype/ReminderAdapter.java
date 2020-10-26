@@ -63,12 +63,12 @@ public class ReminderAdapter extends BaseAdapter {
         deleteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View v) {
-                Toast toast = Toast.makeText(context, "Contact deleted.", Toast.LENGTH_LONG);
+                Toast toast = Toast.makeText(context, "Reminder deleted.", Toast.LENGTH_LONG);
                 ViewGroup group = (ViewGroup) toast.getView();
                 TextView messageTextView = (TextView) group.getChildAt(0);
                 messageTextView.setTextSize(30);
                 toast.show();
-                Log.d("ReminderAdapter","REMINDER DELETED====================================================");
+                Log.d("ReminderAdapter", "REMINDER DELETED===");
                 listener.onUpdate(State.UPDATE_REMINDERS, position);
             }
         });

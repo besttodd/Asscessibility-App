@@ -47,37 +47,37 @@ public class NewEmergencyInfoActivity extends AppCompatActivity {
         scrollView = findViewById(R.id.scroller);
         keyboard = findViewById(R.id.keyboard);
         //getSavedInfo();
-        setFocus(conditions);
+        //setFocus(conditions);
 
         //Setup custom keyboard
         conditions.setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) {
                 keyboard.setLettersKeyboard();
-                setFocus((EditText) v);
                 showCustomKeyboard((EditText) v);
+                setFocus((EditText) v);
             }
         });
         allergies.setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) {
                 keyboard.setLettersKeyboard();
-                setFocus((EditText) v);
                 showCustomKeyboard((EditText) v);
+                setFocus((EditText) v);
             }
         });
         medications.setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) {
                 keyboard.setLettersKeyboard();
-                setFocus((EditText) v);
                 showCustomKeyboard((EditText) v);
-                scrollView.fullScroll(View.FOCUS_DOWN);
+                setFocus((EditText) v);
+                scrollView.smoothScrollTo(0, 500);
             }
         });
         bloodType.setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) {
                 keyboard.setLettersKeyboard();
-                setFocus((EditText) v);
                 showCustomKeyboard((EditText) v);
-                scrollView.fullScroll(View.FOCUS_DOWN);
+                setFocus((EditText) v);
+                scrollView.smoothScrollTo(0, 500);
             }
         });
 
@@ -131,7 +131,9 @@ public class NewEmergencyInfoActivity extends AppCompatActivity {
     public void setFocus(EditText view) {
         view.setBackground(getResources().getDrawable(R.drawable.edittext_focus_style));
         //view.setText("");
-        if (previousField != null) { previousField.setBackground(getResources().getDrawable(R.drawable.edittext_style)); }
+        if (previousField != null && previousField != view) {
+            previousField.setBackground(getResources().getDrawable(R.drawable.edittext_style));
+        }
         previousField = view;
     }
 

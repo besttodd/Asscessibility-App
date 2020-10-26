@@ -49,7 +49,6 @@ public class NewReminderActivity extends AppCompatActivity {
     CheckBox chkFri;
     CheckBox chkSat;
     CheckBox chkSun;
-
     CustomKeyboard keyboard;
 
     @RequiresApi(api = Build.VERSION_CODES.N)
@@ -85,6 +84,7 @@ public class NewReminderActivity extends AppCompatActivity {
         // Make the custom keyboard appear
         textInput.setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) {
+                keyboard.setLettersKeyboard();
                 showCustomKeyboard((EditText) v);
                 setFocus((EditText) v);
             }
@@ -92,7 +92,9 @@ public class NewReminderActivity extends AppCompatActivity {
         minText.setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) {
                 keyboard.setNumKeyboard();
-                minText.setText("");
+                if (minText.getText().toString().equals("00")) {
+                    minText.setText("");
+                }
                 showCustomKeyboard((EditText) v);
                 setFocus((EditText) v);
             }
@@ -152,7 +154,11 @@ public class NewReminderActivity extends AppCompatActivity {
         minText.setKeyListener(keyListener);
         if(min > 59) {
             minText.setText(0);
-            Toast.makeText(this, "Invalid minutes", Toast.LENGTH_LONG).show();
+            Toast toast = Toast.makeText(this, "Invalid minutes", Toast.LENGTH_LONG);
+            ViewGroup group = (ViewGroup) toast.getView();
+            TextView messageTextView = (TextView) group.getChildAt(0);
+            messageTextView.setTextSize(30);
+            toast.show();
         }
 
         RadioButton pmRadio = findViewById(R.id.pmRadio);
@@ -240,7 +246,7 @@ public class NewReminderActivity extends AppCompatActivity {
         //check
         //set("AlarmLabel", reminder.getLabel());
         set("AlarmId", String.valueOf(reminder.getId()));
-        Toast toast = Toast.makeText(this, "Alarm set", Toast.LENGTH_LONG);
+        Toast toast = Toast.makeText(this, "Reminder set", Toast.LENGTH_LONG);
         ViewGroup group = (ViewGroup) toast.getView();
         TextView messageTextView = (TextView) group.getChildAt(0);
         messageTextView.setTextSize(30);

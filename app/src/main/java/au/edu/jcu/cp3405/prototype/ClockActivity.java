@@ -3,6 +3,7 @@ package au.edu.jcu.cp3405.prototype;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.icu.text.SimpleDateFormat;
 import android.os.Build;
@@ -13,18 +14,29 @@ import android.widget.TextView;
 import java.util.Date;
 import java.util.Locale;
 
+@RequiresApi(api = Build.VERSION_CODES.N)
 public class ClockActivity extends AppCompatActivity {
 
     SoundManager soundManager;
 
-    @RequiresApi(api = Build.VERSION_CODES.N)
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_clock);
 
         soundManager = (SoundManager) getApplicationContext();
+        setTimeDate();
+    }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        setTimeDate();
+    }
+
+    @SuppressLint("SimpleDateFormat")
+    private void setTimeDate() {
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy\nHH:mm", Locale.getDefault());
         String currentDateandTime = sdf.format(new Date());
 
@@ -37,12 +49,6 @@ public class ClockActivity extends AppCompatActivity {
         TextView current = findViewById(R.id.currentTimeDate);
         current.setText(finalDisplayText);
     }
-
-    /*@Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        onBackPressed();
-    }*/
 
     public void viewAlarmsClicked(View view) {
         soundManager.playSound(SoundManager.NEUTRAL);

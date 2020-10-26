@@ -9,10 +9,12 @@
     tools:context=".ReminderAlertActivity">
 
     <TextView
+        style="@style/ColorThemeInput"
         android:id="@+id/reminderAlertView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="REMINDER!!"
+        android:gravity="center"
+        android:text="@string/reminder"
         android:textSize="42sp"
         tools:layout_editor_absoluteX="150dp"
         tools:layout_editor_absoluteY="264dp" />

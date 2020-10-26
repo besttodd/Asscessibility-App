@@ -1,23 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/BGcolor"
-    android:orientation="vertical"
-    tools:context=".ViewContactsActivity">
+    android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/ContactView"
-        style="@style/ColorTheme"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="@string/contacts"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/mainLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/BGcolor"
+        android:orientation="vertical"
+        tools:context=".ViewContactsActivity">
+
+        <TextView
+            android:id="@+id/ContactView"
+            style="@style/ColorThemeTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/contacts"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ListView
             android:id="@+id/contactListView"
@@ -28,22 +33,89 @@
             android:listSelector="#600"
             android:scrollbarFadeDuration="10"
             android:scrollbarSize="10dp"
-            app:layout_constraintTop_toBottomOf="@id/ContactView"
-            app:layout_constraintBottom_toTopOf="@id/backButton" />
+            app:layout_constraintBottom_toTopOf="@id/backButton"
+            app:layout_constraintTop_toBottomOf="@id/ContactView"></ListView>
 
-    <TextView
-        android:id="@+id/backButton"
+        <TextView
+            android:id="@+id/backButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="6dp"
+            android:background="@drawable/button_back"
+            android:gravity="end"
+            android:onClick="onBackPressed"
+            android:text="@string/back"
+            android:textColor="#FFFFFF"
+            android:textSize="32sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!--Grey out behind view-->
+    <LinearLayout
+        android:id="@+id/greyScreen"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="#B3000000"
+        android:visibility="invisible" />
+
+    <!--Central Confirmation Dialog-->
+    <LinearLayout
+        android:id="@+id/deleteConfirm"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginBottom="6dp"
-        android:background="@drawable/button_back"
-        android:gravity="end"
-        android:onClick="onBackPressed"
-        android:text="@string/back"
-        android:textColor="#FFFFFF"
-        android:textSize="32sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:background="@color/colorOffRed"
+        android:orientation="vertical"
+        android:padding="10dp"
+        android:visibility="invisible">
+
+        <ImageView
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_gravity="center"
+            app:srcCompat="@android:drawable/ic_delete"
+            android:contentDescription="@string/image_of_a_red_cross" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="6dp"
+            android:text="@string/delete_contact"
+            android:textSize="32sp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/button_red"
+                android:paddingStart="6dp"
+                android:paddingEnd="6dp"
+                android:text="@string/cancel"
+                android:textColor="@color/white"
+                android:textSize="28sp"
+                tools:ignore="ButtonStyle" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:background="@drawable/button_green"
+                android:paddingStart="6dp"
+                android:paddingEnd="6dp"
+                android:text="@string/confirm"
+                android:textColor="@color/white"
+                android:textSize="28sp"
+                tools:ignore="ButtonStyle" />
+        </LinearLayout>
+    </LinearLayout>
+</FrameLayout>

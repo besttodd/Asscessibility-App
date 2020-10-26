@@ -1,6 +1,7 @@
 package au.edu.jcu.cp3405.prototype;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.content.ContentResolver;
 import android.content.Intent;
@@ -9,17 +10,20 @@ import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.util.Log;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Objects;
 
 public class ViewContactsActivity extends AppCompatActivity implements StateListener {
     SoundManager soundManager;
     ArrayList<Contact> arrayOfContacts;
     ListView listView;
+    LinearLayout confirmDelete;
+    LinearLayout greyScreen;
+    ConstraintLayout mainView;
     ContactsAdapter adapter;
 
     @Override
@@ -29,6 +33,9 @@ public class ViewContactsActivity extends AppCompatActivity implements StateList
 
         soundManager = (SoundManager) getApplicationContext();
         listView = findViewById(R.id.contactListView);
+        confirmDelete = findViewById(R.id.deleteConfirm);
+        greyScreen = findViewById(R.id.greyScreen);
+        mainView = findViewById(R.id.mainLayout);
         getAllContacts();
     }
 
@@ -95,8 +102,8 @@ public class ViewContactsActivity extends AppCompatActivity implements StateList
 
     public void contactSelected(View view) {
         View parent = (View) view.getParent().getParent();
-        TextView itemName = (TextView) parent.findViewById(R.id.nameItem);
-        TextView itemNumber = (TextView) parent.findViewById(R.id.numberItem);
+        TextView itemName = parent.findViewById(R.id.nameItem);
+        TextView itemNumber = parent.findViewById(R.id.numberItem);
         if (getIntent().getExtras() == null) {
             Intent intent = new Intent(this, ContactViewActivity.class);
             intent.putExtra("Name", itemName.getText());
@@ -117,4 +124,21 @@ public class ViewContactsActivity extends AppCompatActivity implements StateList
         soundManager.playSound(SoundManager.CANCEL);
         onBackPressed();
     }
+
+    /*public void cancelDelete(View view) {
+        confirmDelete.setVisibility(View.INVISIBLE);
+        greyScreen.setVisibility(View.INVISIBLE);
+        enableDisableView(mainView, true);
+    }
+
+    public static void enableDisableView(View view, boolean enabled) {
+        view.setEnabled(enabled);
+        if ( view instanceof ViewGroup) {
+            ViewGroup group = (ViewGroup)view;
+
+            for ( int idx = 0 ; idx < group.getChildCount() ; idx++ ) {
+                enableDisableView(group.getChildAt(idx), enabled);
+            }
+        }
+    }*/
 }

@@ -32,7 +32,6 @@
                     android:id="@+id/imageView8"
                     android:layout_width="125dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
                     android:contentDescription="@string/phone_icon"
                     app:srcCompat="@android:drawable/ic_menu_call" />
 
@@ -56,7 +55,6 @@
                     android:id="@+id/imageView"
                     android:layout_width="125dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
                     android:contentDescription="@string/contacts_icon"
                     app:srcCompat="@android:drawable/ic_menu_my_calendar" />
 
@@ -80,7 +78,6 @@
                     android:id="@+id/imageView6"
                     android:layout_width="125dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
                     android:contentDescription="@string/messaging_icon"
                     app:srcCompat="@android:drawable/stat_notify_chat" />
 
@@ -103,7 +100,6 @@
                     android:id="@+id/imageView7"
                     android:layout_width="125dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
                     android:contentDescription="@string/flashlight_icon"
                     app:srcCompat="@drawable/torch" />
 
@@ -114,8 +110,8 @@
                     android:layout_gravity="center"
                     android:layout_margin="8dp"
                     android:background="@drawable/button_aqua"
-                    android:text="@string/flashlight"
-                    android:onClick="flashlightClicked" />
+                    android:onClick="flashlightClicked"
+                    android:text="@string/flashlight" />
             </LinearLayout>
 
             <LinearLayout
@@ -127,7 +123,6 @@
                     android:id="@+id/imageView4"
                     android:layout_width="125dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
                     android:contentDescription="@string/camera_icon"
                     app:srcCompat="@android:drawable/ic_menu_camera" />
 
@@ -150,7 +145,7 @@
                     android:id="@+id/imageView2"
                     android:layout_width="125dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
+
                     android:contentDescription="@string/clock_icon"
                     app:srcCompat="@android:drawable/ic_menu_recent_history" />
 
@@ -174,7 +169,6 @@
                     android:id="@+id/imageView3"
                     android:layout_width="125dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
                     android:contentDescription="@string/calendar_icon"
                     app:srcCompat="@android:drawable/ic_menu_today" />
 
@@ -198,7 +192,6 @@
                     android:id="@+id/imageView5"
                     android:layout_width="125dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
                     android:contentDescription="@string/email_icon"
                     app:srcCompat="@android:drawable/ic_dialog_email" />
 
@@ -218,8 +211,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:baselineAligned="false">
+        android:baselineAligned="false"
+        android:orientation="horizontal">
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -235,8 +228,8 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginStart="16dp"
-                android:src="@drawable/phone"
-                android:contentDescription="@string/phone_icon" />
+                android:contentDescription="@string/phone_icon"
+                android:src="@drawable/phone" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -246,28 +239,32 @@
                 android:textSize="32sp"
                 android:textStyle="bold" />
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="2"
             android:orientation="vertical">
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="@drawable/button_blue"
                 android:gravity="center"
-                android:text="EMI"
+                android:onClick="emiClicked"
+                android:text="@string/emi"
                 android:textColor="@color/white"
                 android:textSize="30sp"
-                android:onClick="emiClicked" />
+                tools:ignore="NestedWeights" />
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="@drawable/button_green"
                 android:gravity="center"
-                android:text="Help"
+                android:text="@string/tutorial"
                 android:textColor="@color/white"
                 android:textSize="30sp" />
         </LinearLayout>
@@ -278,8 +275,8 @@
         android:id="@+id/greyScreen"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
         android:background="#B3000000"
+        android:orientation="vertical"
         android:visibility="invisible" />
 
     <!--Central Emergency Confirmation-->
@@ -292,12 +289,14 @@
         android:orientation="vertical"
         android:padding="10dp"
         android:visibility="invisible">
+
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:src="@drawable/phone_calling"
-            android:contentDescription="@string/image_of_a_phone_calling" />
+            android:contentDescription="@string/image_of_a_phone_calling"
+            android:src="@drawable/phone_calling" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -311,16 +310,18 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
+
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/button_red"
+                android:onClick="cancelEmergency"
                 android:paddingStart="6dp"
                 android:paddingEnd="6dp"
                 android:text="@string/cancel"
                 android:textColor="@color/white"
                 android:textSize="28sp"
-                android:onClick="cancelEmergency"/>
+                tools:ignore="ButtonStyle" />
 
             <Button
                 android:layout_width="wrap_content"
@@ -331,7 +332,8 @@
                 android:paddingEnd="6dp"
                 android:text="@string/confirm"
                 android:textColor="@color/white"
-                android:textSize="28sp" />
+                android:textSize="28sp"
+                tools:ignore="ButtonStyle" />
         </LinearLayout>
     </LinearLayout>
 </FrameLayout>

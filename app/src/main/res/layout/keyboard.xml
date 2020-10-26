@@ -1,111 +1,131 @@
 <?xml version="1.0" encoding="utf-8"?>
-<merge xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
+
             <Button
                 android:id="@+id/kbButtonDelete"
+                style="@style/ColorTheme"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
                 android:layout_gravity="center"
-                android:background="@drawable/button_delete"
-                style="@style/ColorTheme" />
+                android:layout_weight="1"
+                android:background="@drawable/button_delete" />
+
             <Button
                 android:id="@+id/kbButton2"
                 style="@style/CustomKeyboardColorTheme"
                 android:background="@drawable/button_aqua"
                 android:text="@string/abc" />
+
             <Button
                 android:id="@+id/kbButton3"
                 style="@style/CustomKeyboardColorTheme"
                 android:background="@drawable/button_aqua"
                 android:text="@string/def" />
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
+
             <Button
                 android:id="@+id/kbButton4"
                 style="@style/CustomKeyboardColorTheme"
                 android:background="@drawable/button_aqua"
                 android:text="@string/ghi" />
+
             <Button
                 android:id="@+id/kbButton5"
                 style="@style/CustomKeyboardColorTheme"
                 android:background="@drawable/button_aqua"
                 android:text="@string/jkl" />
+
             <Button
                 android:id="@+id/kbButton6"
                 style="@style/CustomKeyboardColorTheme"
                 android:background="@drawable/button_aqua"
                 android:text="@string/mno" />
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
+
             <Button
                 android:id="@+id/kbButton7"
                 style="@style/CustomKeyboardColorTheme"
                 android:background="@drawable/button_aqua"
                 android:text="@string/pqrs" />
+
             <Button
                 android:id="@+id/kbButton8"
                 style="@style/CustomKeyboardColorTheme"
                 android:background="@drawable/button_aqua"
                 android:text="@string/tuv" />
+
             <Button
                 android:id="@+id/kbButton9"
                 style="@style/CustomKeyboardColorTheme"
                 android:background="@drawable/button_aqua"
                 android:text="@string/wxyz" />
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
+
             <Button
-            android:id="@+id/kbButtonNums"
-            style="@style/ColorTheme"
-            android:layout_height="wrap_content"
-            android:layout_width="0dp"
+                android:id="@+id/kbButtonNums"
+                style="@style/CustomKeyboardColorTheme"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
-            android:background="@drawable/button_aqua"
-            android:text="@string/_1_2_3" />
+                android:background="@drawable/button_aqua"
+                android:text="@string/_1_2_3" />
+
             <Button
                 android:id="@+id/kbButtonCaps"
                 style="@style/CustomKeyboardColorTheme"
-                android:background="@drawable/button_aqua"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:background="@drawable/button_aqua"
                 android:text="@string/aa" />
+
             <Button
                 android:id="@+id/kbButtonSpace"
-                style="@style/ColorTheme"
-                android:layout_height="wrap_content"
+                style="@style/CustomKeyboardColorTheme"
                 android:layout_width="0dp"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="@drawable/button_aqua"
                 android:text="@string/space_char" />
+
             <ImageButton
                 android:id="@+id/kbButtonEnter"
+                style="@style/CustomKeyboardColorTheme"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
+                android:layout_gravity="center"
                 android:layout_weight="1"
+                android:background="@drawable/button_green"
+                android:contentDescription="@string/tick_button"
                 android:text="@string/done"
                 android:textAllCaps="false"
-                android:background="@drawable/button_green"
-                app:srcCompat="@drawable/tick"
-                android:layout_gravity="center"
-                style="@style/ColorTheme"
-                android:contentDescription="@string/tick_button" />
+                app:srcCompat="@drawable/tick" />
         </LinearLayout>
     </LinearLayout>
 </merge>

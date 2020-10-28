@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context=".NewMessageActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/mainLayout"
@@ -33,24 +34,40 @@
             android:listSelector="#600"
             android:scrollbarFadeDuration="10"
             android:scrollbarSize="10dp"
-            app:layout_constraintBottom_toTopOf="@id/backButton"
-            app:layout_constraintTop_toBottomOf="@id/contactViewTitle"></ListView>
+            android:clickable="true"
+            app:layout_constraintBottom_toTopOf="@id/buttonLayout"
+            app:layout_constraintTop_toBottomOf="@id/contactViewTitle"
+            android:focusable="true" />
 
-        <TextView
-            android:id="@+id/backButton"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:id="@+id/buttonLayout"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginBottom="6dp"
-            android:background="@drawable/button_back"
-            android:gravity="end"
-            android:onClick="onBackPressed"
-            android:text="@string/back"
-            android:textColor="#FFFFFF"
-            android:textSize="32sp"
+            android:orientation="horizontal"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent">
+
+            <TextView
+                style="@style/ColorTheme"
+                android:id="@+id/backButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:layout_marginBottom="6dp"
+                android:background="@drawable/button_red"
+                android:onClick="onBackPressed"
+                android:text="@string/back" />
+
+            <Button
+                android:id="@+id/newMessageButton"
+                style="@style/ColorTheme"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/button_aqua"
+                android:text="@string/new_alone" />
+        </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <!--Grey out behind view-->

@@ -88,7 +88,8 @@
                     android:layout_gravity="center"
                     android:layout_margin="8dp"
                     android:background="@drawable/button_aqua"
-                    android:text="@string/messaging" />
+                    android:text="@string/messaging"
+                    android:onClick="messagingClicked" />
             </LinearLayout>
 
             <LinearLayout

@@ -70,7 +70,7 @@ public class CalendarEvent implements Comparable<CalendarEvent>{
     @NonNull
     @Override
     public String toString(){
-        return getTitle() + " " + getBegin() + " " + getEnd() + " " + isAllDay();
+        return title + " " + begin + " " + end + " " + allDay;
     }
 
     @Override

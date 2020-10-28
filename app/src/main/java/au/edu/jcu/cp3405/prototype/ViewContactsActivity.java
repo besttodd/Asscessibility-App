@@ -24,7 +24,7 @@ public class ViewContactsActivity extends AppCompatActivity implements StateList
     LinearLayout confirmDelete;
     LinearLayout greyScreen;
     ConstraintLayout mainView;
-    ContactsAdapter adapter;
+    ContactsAdvAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,7 +80,7 @@ public class ViewContactsActivity extends AppCompatActivity implements StateList
                 arrayOfContacts.add(contact);
                 Collections.sort(arrayOfContacts, new SortBasedOnName());
             }
-            adapter = new ContactsAdapter(this, arrayOfContacts);
+            adapter = new ContactsAdvAdapter(this, arrayOfContacts);
             listView.setAdapter(adapter);
             /*listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override

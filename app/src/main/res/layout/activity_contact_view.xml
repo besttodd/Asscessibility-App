@@ -5,132 +5,152 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/BGcolor"
-    android:orientation="vertical"
     tools:context=".ContactViewActivity">
 
     <LinearLayout
-        android:id="@+id/nameLayout"
+        android:id="@+id/contactLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintTop_toTopOf="parent">
+        android:orientation="vertical"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
 
-        <ImageView
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_margin="16dp"
-            android:contentDescription="@string/picture_of_contact"
-            android:src="@drawable/contact_img" />
-
-        <TextView
-            android:id="@+id/contactName"
-            style="@style/ColorThemeTitle"
-            android:layout_width="0dp"
+        <LinearLayout
+            android:id="@+id/nameLayout"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="Contact Name" />
-    </LinearLayout>
+            android:orientation="horizontal"
+            app:layout_constraintTop_toTopOf="parent">
 
-    <LinearLayout
-        android:id="@+id/numberLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintTop_toBottomOf="@+id/nameLayout">
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_margin="16dp"
+                android:contentDescription="@string/picture_of_contact"
+                android:src="@drawable/contact_img" />
+
+            <TextView
+                android:id="@+id/contactName"
+                style="@style/ColorThemeTitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/contact_name" />
+        </LinearLayout>
 
         <TextView
-            style="@style/ColorTheme"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/number"
-            android:textColor="@color/blue" />
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/phone_number"
+            android:textColor="@color/blue"
+            android:textSize="32sp"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/contactNumber"
-            style="@style/ColorTheme"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="42dp"
             android:text="0000000000"
-            android:textColor="@color/blue" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/emailLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintTop_toBottomOf="@id/numberLayout">
+            android:textColor="@color/blue"
+            android:textSize="32sp"
+            android:textStyle="bold" />
 
         <TextView
-            style="@style/ColorTheme"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
             android:text="@string/email"
-            android:textColor="@color/blue" />
+            android:textColor="@color/blue"
+            android:textSize="32sp"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/contactEmail"
-            style="@style/ColorTheme"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="42dp"
             android:text="none@none.com"
-            android:textColor="@color/blue" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toTopOf="@id/editButtonLayout">
-
-        <Button
-            style="@style/ColorTheme"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@drawable/button_aqua"
-            android:text="@string/call" />
-
-        <Button
-            style="@style/ColorTheme"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@drawable/button_aqua"
-            android:text="Message" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/editButtonLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent">
-
-        <Button
-            android:id="@+id/backButton"
-            style="@style/ColorTheme"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:background="@drawable/button_red"
-            android:layout_weight="1"
-            android:onClick="onBackPressed"
-            android:text="@string/back"
-            android:textColor="#FFFFFF"
+            android:textColor="@color/blue"
             android:textSize="32sp"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:textStyle="bold" />
 
-        <Button
-            android:id="@+id/editButton"
-            style="@style/ColorTheme"
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@drawable/button_aqua"
-            android:text="@string/edit" />
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:text="@string/address"
+            android:textColor="@color/blue"
+            android:textSize="32sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/contactAddress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="42dp"
+            android:layout_marginBottom="16dp"
+            android:text="@string/cairns"
+            android:textColor="@color/blue"
+            android:textSize="32sp"
+            android:textStyle="bold" />
     </LinearLayout>
+
+    <Button
+        android:id="@+id/callButton"
+        style="@style/ColorTheme"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:background="@drawable/button_aqua"
+        android:text="@string/call"
+        app:layout_constraintBottom_toTopOf="@id/backButton"
+        app:layout_constraintEnd_toStartOf="@id/messageButton"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/messageButton"
+        style="@style/ColorTheme"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:background="@drawable/button_aqua"
+        android:text="@string/message"
+        app:layout_constraintBottom_toTopOf="@id/editButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/callButton" />
+
+    <Button
+        android:id="@+id/backButton"
+        style="@style/ColorTheme"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_weight="1"
+        android:background="@drawable/button_red"
+        android:onClick="onBackPressed"
+        android:text="@string/back"
+        android:textColor="#FFFFFF"
+        android:textSize="32sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/editButton"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/editButton"
+        style="@style/ColorTheme"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:background="@drawable/button_aqua"
+        android:text="@string/edit"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/backButton" />
 </androidx.constraintlayout.widget.ConstraintLayout>

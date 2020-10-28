@@ -55,6 +55,12 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void messagingClicked(View view) {
+        soundManager.playSound(SoundManager.NEUTRAL);
+        Intent intent = new Intent(this, MessagingActivity.class);
+        startActivity(intent);
+    }
+
     public void emergencyClicked(View view) {
         emergencyConfirm.setVisibility(View.VISIBLE);
         greyScreen.setVisibility(View.VISIBLE);

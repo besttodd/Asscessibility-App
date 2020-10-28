@@ -31,9 +31,9 @@ public class InCallActivity extends AppCompatActivity {
     }
 
     public String setTitle(String numberCalled) {
-        return "------------------------------\n"
+        return "-----------------------\n"
                 + "In Call - " + numberCalled.replace(" ", "")
-                + "\n-----------00:34-----------";
+                + "\n---------00:34--------";
     }
 
     public void endCall(View view) {

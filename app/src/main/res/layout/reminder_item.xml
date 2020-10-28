@@ -17,7 +17,7 @@
         android:paddingStart="12dp"
         android:paddingEnd="12dp"
         android:textSize="32sp"
-        android:textColor="#FFFFFF"
+        android:textColor="@color/blue"
         android:text="@string/reminders" />
 
     <TextView
@@ -26,7 +26,7 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:textSize="32sp"
-        android:textColor="#FFFFFF"
+        android:textColor="@color/blue"
         android:text="@string/time_divider" />
         <Button
             android:id="@+id/deleteButton"
@@ -43,6 +43,6 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:textSize="32sp"
-        android:textColor="#FFFFFF"
+        android:textColor="@color/blue"
         android:text="@string/on_these_days" />
 </LinearLayout>

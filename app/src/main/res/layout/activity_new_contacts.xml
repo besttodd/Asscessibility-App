@@ -18,7 +18,7 @@
             tools:context=".NewContactActivity">
 
             <TextView
-                style="@style/ColorTheme"
+                style="@style/ColorThemeTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/add_new_title"
@@ -26,7 +26,7 @@
 
             <TextView
                 android:id="@+id/textView"
-                style="@style/ColorTheme"
+                style="@style/ColorThemeBlue"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:labelFor="@id/contactName"
@@ -47,7 +47,7 @@
 
             <TextView
                 android:id="@+id/textView2"
-                style="@style/ColorTheme"
+                style="@style/ColorThemeBlue"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:labelFor="@id/contactPhone"
@@ -69,7 +69,7 @@
 
             <TextView
                 android:id="@+id/textView3"
-                style="@style/ColorTheme"
+                style="@style/ColorThemeBlue"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:labelFor="@id/contactEmail"
@@ -89,7 +89,7 @@
 
             <TextView
                 android:id="@+id/textView4"
-                style="@style/ColorTheme"
+                style="@style/ColorThemeBlue"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:labelFor="@id/contactAddress"

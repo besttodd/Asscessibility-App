@@ -13,7 +13,7 @@
 
         <TextView
             android:id="@+id/textView"
-            style="@style/ColorTheme"
+            style="@style/ColorThemeTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -35,8 +35,7 @@
             tools:ignore="LabelFor" />
 
         <TextView
-            android:id="@+id/textView2"
-            style="@style/ColorTheme"
+            style="@style/ColorThemeTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -58,7 +57,7 @@
                 android:padding="8dp" />
 
             <TextView
-                style="@style/ColorTheme"
+                style="@style/ColorThemeBlue"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/time_divider" />
@@ -90,36 +89,38 @@
                 <RadioGroup
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:layout_marginStart="26dp"
                     tools:ignore="UselessParent">
 
                     <RadioButton
                         android:id="@+id/amRadio"
-                        style="@style/ColorTheme"
+                        style="@style/ColorThemeBlue"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:padding="0dp"
                         android:text="@string/am" />
 
                     <RadioButton
                         android:id="@+id/pmRadio"
-                        style="@style/ColorTheme"
+                        style="@style/ColorThemeBlue"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:padding="0dp"
                         android:text="@string/pm" />
                 </RadioGroup>
             </LinearLayout>
         </LinearLayout>
 
         <TextView
+            style="@style/ColorThemeBlue"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:gravity="bottom"
-            android:paddingTop="16dp"
-            android:text="@string/on_these_days"
-            android:textColor="#FFFFFF"
-            android:textSize="32sp" />
+            android:layout_marginTop="26dp"
+            android:text="@string/on_these_days" />
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -129,7 +130,7 @@
 
             <CheckBox
                 android:id="@+id/sunCheckBox"
-                style="@style/ColorTheme"
+                style="@style/ColorThemeBlue"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="0dp"
@@ -137,7 +138,7 @@
 
             <CheckBox
                 android:id="@+id/monCheckBox"
-                style="@style/ColorTheme"
+                style="@style/ColorThemeBlue"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="0dp"
@@ -145,7 +146,7 @@
 
             <CheckBox
                 android:id="@+id/tueCheckBox"
-                style="@style/ColorTheme"
+                style="@style/ColorThemeBlue"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="0dp"
@@ -153,7 +154,7 @@
 
             <CheckBox
                 android:id="@+id/wedCheckBox"
-                style="@style/ColorTheme"
+                style="@style/ColorThemeBlue"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="0dp"
@@ -161,7 +162,7 @@
 
             <CheckBox
                 android:id="@+id/thursCheckBox"
-                style="@style/ColorTheme"
+                style="@style/ColorThemeBlue"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="0dp"
@@ -169,7 +170,7 @@
 
             <CheckBox
                 android:id="@+id/friCheckBox"
-                style="@style/ColorTheme"
+                style="@style/ColorThemeBlue"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="0dp"
@@ -177,7 +178,7 @@
 
             <CheckBox
                 android:id="@+id/satCheckBox"
-                style="@style/ColorTheme"
+                style="@style/ColorThemeBlue"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="0dp"

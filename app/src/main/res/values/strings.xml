@@ -130,4 +130,18 @@
     <string name="date">Date</string>
     <string name="event_1">Event 1</string>
     <string name="_10_00am">10:00am</string>
+    <string name="contact_name">Contact Name</string>
+    <string name="phone_number">Phone Number:</string>
+    <string name="cairns">69 Goodenough Road\nCairns</string>
+    <string name="message">Message</string>
+    <string name="add_new_event">Add new event:</string>
+    <string name="event_title">Title:</string>
+    <string name="event_date_time"><![CDATA[Date & Time:]]></string>
+    <string name="location">Location:</string>
+    <string name="notes">Notes:</string>
+    <string name="notifications">Notifications</string>
+    <string name="messages">Messages</string>
+    <string name="new_message">New Message</string>
+    <string name="inbox">Inbox</string>
+    <string name="new_alone">New</string>
 </resources>
